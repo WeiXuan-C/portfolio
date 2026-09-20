@@ -20,7 +20,7 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
       command: 'whoami',
       output: (
         <div className="text-emerald-300 font-mono">
-          Alex Chen — IT Student, Software Developer & UI/UX Craftsman
+          Chong Wei Xuan (钟玮萱) — Software Developer & AI Systems Engineer (MMU Cyberjaya)
         </div>
       )
     },
@@ -28,7 +28,7 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
       command: 'skills',
       output: (
         <div className="text-slate-300 font-mono">
-          React 19 • TypeScript • Next.js • Node.js • PostgreSQL • Supabase • Tailwind CSS • Figma
+          Flutter • Next.js 15 • React 19 • Supabase • PostgreSQL • Google Gemma 3 VLM • Whisper • Redis • Tailwind CSS
         </div>
       )
     },
@@ -36,7 +36,7 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
       command: 'currently_building',
       output: (
         <div className="text-cyan-300 font-mono">
-          High-performance full-stack web applications & editorial digital design experiences.
+          Tripify (LangGraph multi-agent collaborative travel workspace), Pavra (UNIMAS 8.0 Winner) & Studify (CodeNection Winner).
         </div>
       )
     },
@@ -45,7 +45,7 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
       output: (
         <div className="text-emerald-400 font-mono flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-          available_for_new_projects (Full-Time / Internship / Contract)
+          Undergraduate Student @ MMU Cyberjaya • Open to Tech Collaboration & Hackathons
         </div>
       )
     }
@@ -63,31 +63,31 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
       case 'whoami':
         outputNode = (
           <div className="text-emerald-300">
-            {portfolioData.personal.name} — {portfolioData.personal.title} ({portfolioData.personal.location})
+            {portfolioData.personal.name} ({portfolioData.personal.chineseName}) — {portfolioData.personal.title} • {portfolioData.personal.location}
           </div>
         );
         break;
       case 'skills':
         outputNode = (
           <div className="space-y-1 text-slate-300">
-            <div><span className="text-emerald-400">Languages:</span> TypeScript, JavaScript, Python, C++, PHP</div>
-            <div><span className="text-cyan-400">Frontend:</span> React 19, Next.js, Tailwind CSS, Framer Motion, HTML5</div>
-            <div><span className="text-violet-400">Backend:</span> Node.js, Express, PostgreSQL, Supabase, REST APIs</div>
-            <div><span className="text-pink-400">Design & Tools:</span> Figma, Git/GitHub, VS Code, Vercel</div>
+            <div><span className="text-emerald-400">Web Apps & Frontend:</span> Next.js 15, React 19, TypeScript, Tailwind CSS, Redux, Flutter (Mobile)</div>
+            <div><span className="text-cyan-400">Backend & Cloud:</span> Supabase (Auth, Postgres, Realtime), PostgreSQL, MySQL, Redis, OneSignal</div>
+            <div><span className="text-violet-400">AI & Multi-Agent:</span> LangGraph Multi-Agent, Google Gemma 3 4B VLM, Whisper, Dual-Embedding RAG</div>
+            <div><span className="text-pink-400">QA & Engineering:</span> System Testing (SIT/UAT), Technical Documentation, Git/GitHub, Vercel</div>
           </div>
         );
         break;
       case 'currently_building':
         outputNode = (
           <div className="text-cyan-300">
-            {portfolioData.personal.tagline} Currently refining Tripify AI and real-time distributed reservation architectures.
+            "{portfolioData.personal.tagline}" Crafting collaborative web applications with LangGraph multi-agent loops, Next.js 15, and Supabase Realtime.
           </div>
         );
         break;
       case 'status':
         outputNode = (
           <div className="text-emerald-400 font-bold">
-            🟢 Status: AVAILABLE_FOR_NEW_PROJECTS & Graduate Engineering Roles (2025/2026).
+            🟢 Status: Undergraduate Student @ MMU Cyberjaya (Software Engineering) • Open to Tech Collaboration & Open Source.
           </div>
         );
         break;
@@ -105,9 +105,11 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
       case 'experience':
         outputNode = (
           <div className="space-y-1 text-slate-300">
-            <div>• <span className="text-emerald-400">CloudPulse Labs:</span> Software Engineering Intern (May 2024 – Dec 2024)</div>
-            <div>• <span className="text-cyan-400">National University of Technology:</span> Teaching Assistant (Jan 2024 – May 2024)</div>
-            <div>• <span className="text-amber-400">HackAsia 2024:</span> 1st Place Grand Winner (March 2024)</div>
+            <div>• <span className="text-emerald-400">Moabi PLT:</span> Software Engineering Intern — QA Testing & Technical Documentation (2024.07 – 2024.10)</div>
+            <div>• <span className="text-cyan-400">UNIMAS 8.0 Hackathon:</span> Team Leader & Champion Winner (Pavra AI Road Safety)</div>
+            <div>• <span className="text-amber-400">CodeNection 2025:</span> Core Developer & Champion Winner (Studify Tutoring Platform)</div>
+            <div>• <span className="text-violet-400">Tripify Project:</span> Backend & Data Integrations (Collaborative AI Travel Workspace)</div>
+            <div>• <span className="text-pink-400">Multimedia University:</span> Core Developer (TeamSync Final Year Project)</div>
           </div>
         );
         break;
@@ -115,6 +117,7 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
         outputNode = (
           <div className="space-y-1 text-slate-300">
             <div>Email: <a href={`mailto:${portfolioData.personal.email}`} className="text-emerald-400 underline">{portfolioData.personal.email}</a></div>
+            <div>WhatsApp: <a href={`https://wa.me/601165200275`} target="_blank" rel="noreferrer" className="text-emerald-400 underline">{portfolioData.personal.phone}</a></div>
             <div>GitHub: <a href={portfolioData.personal.github} target="_blank" rel="noreferrer" className="text-cyan-400 underline">{portfolioData.personal.github}</a></div>
             <div>LinkedIn: <a href={portfolioData.personal.linkedin} target="_blank" rel="noreferrer" className="text-blue-400 underline">{portfolioData.personal.linkedin}</a></div>
           </div>
@@ -221,7 +224,7 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
               <span className="text-xs font-mono text-slate-400 ml-2">
-                alexchen@portfolio: ~ (interactive shell)
+                weixuan@portfolio: ~ (interactive shell)
               </span>
             </div>
             <button

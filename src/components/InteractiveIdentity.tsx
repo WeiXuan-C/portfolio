@@ -46,19 +46,21 @@ export const InteractiveIdentity: React.FC = () => {
     setTilt({ rotateX: 0, rotateY: 0, glowX: 50, glowY: 50 });
   };
 
-  const codeSnippet = `// alex-chen/developer-profile.ts
-import { Developer, Experience, Craft } from '@core/identity';
+  const codeSnippet = `// weixuan-chong/developer-profile.ts
+import { Developer, Experience, AIModel } from '@core/identity';
 
-export const alex: Developer = {
-  name: 'Alex Chen',
-  role: 'Software Developer & UI/UX Craftsman',
-  coreStack: ['TypeScript', 'React 19', 'Next.js', 'PostgreSQL'],
-  philosophy: 'Code with precision. Design with intention.',
+export const weiXuan: Developer = {
+  name: 'Chong Wei Xuan (钟玮萱)',
+  role: 'Software Developer & AI Systems Engineer',
+  education: 'Multimedia University (MMU) • CGPA 3.93',
+  awards: ['UNIMAS 8.0 Winner (Pavra)', 'CodeNection 2025 Winner (Studify)'],
+  coreStack: ['Flutter', 'Next.js 15', 'React 19', 'Supabase', 'PostgreSQL', 'Gemma 3 VLM'],
+  philosophy: "I don't just build software. I design digital experiences.",
   
-  async buildExperience(vision: string): Promise<DigitalProduct> {
-    const architecture = await Craft.architect({ resilience: 0.999 });
-    const interfaceUX = await Craft.sculptUI({ elegance: 'editorial' });
-    return architecture.fuseWith(interfaceUX);
+  async deliverInnovation(problem: string): Promise<Solution> {
+    const aiPipeline = await AIModel.orchestrate({ vision: 'Gemma 3 4B', rag: 'Dual-Embedding' });
+    const mobileUI = await Flutter.sculptErgonomics({ mapIntegration: 'Google Maps' });
+    return aiPipeline.fuseWith(mobileUI);
   }
 };`;
 
@@ -125,7 +127,7 @@ export const alex: Developer = {
             <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block border border-amber-600/50" />
             <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block border border-emerald-600/50" />
             <span className="ml-2 text-xs font-mono text-slate-400 hidden sm:inline">
-              alexchen@workstation: ~/identity
+              weixuan@workstation: ~/portfolio
             </span>
           </div>
 
@@ -199,14 +201,15 @@ export const alex: Developer = {
 
               <pre className="text-slate-300 leading-relaxed overflow-x-auto whitespace-pre font-mono text-[11.5px]">
                 <code>
-                  <span className="text-indigo-400">import</span> {'{'} <span className="text-emerald-300">Developer</span>, <span className="text-emerald-300">Experience</span>, <span className="text-emerald-300">Craft</span> {'}'} <span className="text-indigo-400">from</span> <span className="text-amber-300">'@core/identity'</span>;{'\n\n'}
-                  <span className="text-indigo-400">export const</span> <span className="text-cyan-300">alex</span>: <span className="text-emerald-300">Developer</span> = {'{'}{'\n'}
-                  {'  '}name: <span className="text-amber-300">'Alex Chen'</span>,{'\n'}
-                  {'  '}role: <span className="text-amber-300">'Software Developer & UI/UX Craftsman'</span>,{'\n'}
-                  {'  '}coreStack: [<span className="text-amber-300">'TypeScript'</span>, <span className="text-amber-300">'React 19'</span>, <span className="text-amber-300">'Next.js'</span>, <span className="text-amber-300">'PostgreSQL'</span>],{'\n'}
+                  <span className="text-indigo-400">import</span> {'{'} <span className="text-emerald-300">Developer</span>, <span className="text-emerald-300">Experience</span>, <span className="text-emerald-300">AIModel</span> {'}'} <span className="text-indigo-400">from</span> <span className="text-amber-300">'@core/identity'</span>;{'\n\n'}
+                  <span className="text-indigo-400">export const</span> <span className="text-cyan-300">weiXuan</span>: <span className="text-emerald-300">Developer</span> = {'{'}{'\n'}
+                  {'  '}name: <span className="text-amber-300">'Chong Wei Xuan (钟玮萱)'</span>,{'\n'}
+                  {'  '}role: <span className="text-amber-300">'Software Developer & AI Systems Engineer'</span>,{'\n'}
+                  {'  '}education: <span className="text-amber-300">'MMU • CGPA 3.93'</span>,{'\n'}
+                  {'  '}coreStack: [<span className="text-amber-300">'Flutter'</span>, <span className="text-amber-300">'Next.js 15'</span>, <span className="text-amber-300">'Supabase'</span>, <span className="text-amber-300">'Gemma 3 VLM'</span>],{'\n'}
                   {'  '}philosophy: <span className="text-amber-300">"I don't just build software. I design digital experiences."</span>,{'\n'}
-                  {'  '}<span className="text-indigo-400">async</span> <span className="text-blue-300">fuseCraft</span>() {'{'}{'\n'}
-                  {'    '}<span className="text-indigo-400">return</span> Craft.<span className="text-blue-300">deliver</span>({'{'} aesthetic: <span className="text-amber-300">'high-order'</span>, latencyMs: <span className="text-emerald-400">18</span> {'}'});{'\n'}
+                  {'  '}<span className="text-indigo-400">async</span> <span className="text-blue-300">deliverInnovation</span>() {'{'}{'\n'}
+                  {'    '}<span className="text-indigo-400">return</span> AIModel.<span className="text-blue-300">orchestrate</span>({'{'} vision: <span className="text-amber-300">'Gemma 3 4B'</span>, map: <span className="text-amber-300">'Google Maps'</span> {'}'});{'\n'}
                   {'  '}{'}'}{'\n'}
                   {'}'};
                 </code>

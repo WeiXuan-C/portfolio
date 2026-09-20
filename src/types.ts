@@ -1,16 +1,19 @@
 export interface PersonalInfo {
   name: string;
+  chineseName?: string;
   title: string;
   shortTitle: string;
   statement: string;
   tagline: string;
   email: string;
   phone: string;
+  whatsapp?: string;
   location: string;
   portfolioUrl: string;
   github: string;
   linkedin: string;
   twitter?: string;
+  avatar?: string;
   availability: string;
   status: string;
 }
@@ -45,6 +48,8 @@ export interface ProjectItem {
   architectureNotes: string;
   githubUrl: string;
   liveUrl: string;
+  videoUrl?: string;
+  slidesUrl?: string;
   stats?: { label: string; value: string }[];
   accentColor: string;
 }

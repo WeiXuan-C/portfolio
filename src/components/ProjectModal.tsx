@@ -14,7 +14,17 @@ import {
   Users, 
   Ticket, 
   Receipt, 
-  Play
+  Play,
+  Video,
+  Bot,
+  Compass,
+  AlertTriangle,
+  Bell,
+  Search,
+  FileText,
+  ThumbsUp,
+  RefreshCw,
+  Clock
 } from 'lucide-react';
 import { ProjectItem } from '../types';
 
@@ -25,10 +35,24 @@ interface ProjectModalProps {
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'simulation' | 'architecture'>('simulation');
-  const [simulatedCity, setSimulatedCity] = useState('Kyoto, Japan');
-  const [simulatedDays, setSimulatedDays] = useState(3);
-  const [selectedSeat, setSelectedSeat] = useState<string[]>(['E4', 'E5']);
-  const [invoiceStatus, setInvoiceStatus] = useState<'Draft' | 'Sent' | 'Paid'>('Sent');
+
+  // Tripify interactive state
+  const [tripDest, setTripDest] = useState('Tokyo & Kyoto');
+  const [activeAgent, setActiveAgent] = useState<'Researcher' | 'Planner' | 'Critic'>('Planner');
+  const [hasVoted, setHasVoted] = useState(false);
+  const [simulateDelay, setSimulateDelay] = useState(false);
+
+  // Pavra interactive state
+  const [selectedHazard, setSelectedHazard] = useState<'pothole' | 'crack' | 'debris'>('pothole');
+  const [alertRadius, setAlertRadius] = useState(500);
+
+  // Studify interactive state
+  const [searchQuery, setSearchQuery] = useState('Machine learning backpropagation');
+  const [videoTimestamp, setVideoTimestamp] = useState('04:15');
+
+  // TeamSync interactive state
+  const [aiTaskPrompt, setAiTaskPrompt] = useState('Implement Stripe Webhook Listener');
+  const [isGeneratingTasks, setIsGeneratingTasks] = useState(false);
 
   if (!project) return null;
 
@@ -55,6 +79,18 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </div>
 
             <div className="flex items-center gap-2">
+              {project.videoUrl && (
+                <a
+                  href={project.videoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/20 text-xs font-medium transition-colors"
+                  title="Watch Video Presentation on YouTube"
+                >
+                  <Video className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Pitch Video</span>
+                </a>
+              )}
               <a
                 href={project.githubUrl}
                 target="_blank"
@@ -105,7 +141,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   : 'border-transparent text-slate-400 hover:text-slate-200'
               }`}
             >
-              Technical Architecture
+              Technical Architecture & Stack
             </button>
           </div>
 
@@ -117,188 +153,358 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 flex items-center justify-between">
                   <span className="flex items-center gap-2">
                     <Sparkles className="w-4 h-4" />
-                    Interactive prototype playground previewing core engineering UX
+                    Interactive prototype playground previewing core engineering logic
                   </span>
-                  <span className="font-mono text-[10px] bg-emerald-500/20 px-2 py-0.5 rounded">Mock Environment</span>
+                  <span className="font-mono text-[10px] bg-emerald-500/20 px-2 py-0.5 rounded">Live Interactive Demo</span>
                 </div>
 
-                {/* Customized interactive simulation per project */}
+                {/* Case 1: Tripify Multi-Agent Travel Planning Workspace */}
                 {project.id === 'tripify' && (
+                  <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+                      <div>
+                        <div className="text-xs text-slate-400 font-mono">Trip Destination & Scope</div>
+                        <div className="text-sm font-semibold text-slate-100 flex items-center gap-2 mt-1">
+                          <Compass className="w-4 h-4 text-cyan-400" />
+                          <span>{tripDest} (3-Day Shared Itinerary)</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800">
+                        {(['Researcher', 'Planner', 'Critic'] as const).map((agent) => (
+                          <button
+                            key={agent}
+                            onClick={() => setActiveAgent(agent)}
+                            className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
+                              activeAgent === agent
+                                ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
+                                : 'text-slate-400 hover:text-slate-200'
+                            }`}
+                          >
+                            {agent} Agent
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Multi-Agent LangGraph State Display */}
+                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                      <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-2 font-mono text-cyan-400">
+                          <Bot className="w-4 h-4" />
+                          <span>LangGraph Agent State: [{activeAgent}]</span>
+                        </div>
+                        <span className="font-mono text-[10px] text-slate-500">Supabase Realtime Sync: ACTIVE</span>
+                      </div>
+
+                      {activeAgent === 'Researcher' && (
+                        <div className="text-xs text-slate-300 space-y-2 font-mono">
+                          <div className="text-emerald-400 font-bold">Querying Google Places & Routes APIs...</div>
+                          <p className="text-slate-400">• Found 14 candidate spots matching group walking tolerance (max 1.5km)</p>
+                          <p className="text-slate-400">• Weather forecast: Sunny on Day 1-2, 60% rain likelihood on Day 3</p>
+                          <p className="text-slate-400">• Budget constraint: Group target RM 1,200/pax. Identified high value-for-money meals.</p>
+                        </div>
+                      )}
+
+                      {activeAgent === 'Planner' && (
+                        <div className="text-xs space-y-2">
+                          <div className="font-mono text-emerald-400 font-semibold">
+                            Proposal #04: Value-Optimized Day Sequence (Chong Wei Xuan data model)
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 font-sans">
+                            <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                              <span className="text-[10px] font-mono text-cyan-400">DAY 1</span>
+                              <div className="font-semibold text-slate-200 text-xs mt-0.5">Shinjuku & Shibuya Crossing</div>
+                              <div className="text-[11px] text-slate-400 mt-1">Route transit: 12m Metro • Group fit: 96%</div>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                              <span className="text-[10px] font-mono text-cyan-400">DAY 2</span>
+                              <div className="font-semibold text-slate-200 text-xs mt-0.5">Shinkansen → Gion Kyoto</div>
+                              <div className="text-[11px] text-slate-400 mt-1">Route transit: 2h 15m Bullet • Group fit: 92%</div>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                              <span className="text-[10px] font-mono text-cyan-400">DAY 3</span>
+                              <div className="font-semibold text-slate-200 text-xs mt-0.5">Arashiyama Bamboo Grove</div>
+                              <div className="text-[11px] text-slate-400 mt-1">
+                                {simulateDelay ? '⚠️ Rain fallback triggered: Kyoto Railway Museum' : 'Outdoor walk • Fallback: Indoor Arts'}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {activeAgent === 'Critic' && (
+                        <div className="text-xs text-slate-300 space-y-2 font-mono">
+                          <div className="text-amber-400 font-bold">Feasibility & Risk Verification:</div>
+                          <p className="text-slate-400">• Timing check: 45m buffer between train arrival and hotel luggage drop (PASSED)</p>
+                          <p className="text-slate-400">• Group fit: Balanced pacing for all 3 members (Sim Po, Jia Xuan, Wei Xuan)</p>
+                          <p className="text-slate-400">• Budget delta: -12% below target ceiling via transit pass recommendation</p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Proposal Diff & Voting Sandbox */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setHasVoted(!hasVoted)}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
+                            hasVoted
+                              ? 'bg-emerald-500 text-slate-950 font-bold'
+                              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                          }`}
+                        >
+                          <ThumbsUp className="w-3.5 h-3.5" />
+                          <span>{hasVoted ? 'Proposal Accepted (3/3 Votes)' : 'Vote to Approve Proposal (2/3)'}</span>
+                        </button>
+
+                        <button
+                          onClick={() => setSimulateDelay(!simulateDelay)}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono border transition-all cursor-pointer ${
+                            simulateDelay
+                              ? 'bg-amber-500/20 border-amber-500 text-amber-300'
+                              : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+                          }`}
+                        >
+                          <RefreshCw className={`w-3.5 h-3.5 ${simulateDelay ? 'animate-spin' : ''}`} />
+                          <span>{simulateDelay ? 'Disruption Active: Dynamic Replanned' : 'Simulate Rain / Delay Event'}</span>
+                        </button>
+                      </div>
+
+                      <a
+                        href="https://tripify-agent.vercel.app"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-xs font-mono text-cyan-400 hover:underline flex items-center gap-1"
+                      >
+                        <span>tripify-agent.vercel.app</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                {/* Case 2: Pavra AI Road Safety App */}
+                {project.id === 'pavra' && (
                   <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div>
-                        <div className="text-xs text-slate-400 font-mono">Select Destination & Pace</div>
+                        <div className="text-xs text-slate-400 font-mono">Google Gemma 3 4B VLM Camera Inference</div>
                         <div className="text-sm font-semibold text-slate-100 flex items-center gap-2 mt-1">
-                          <MapPin className="w-4 h-4 text-emerald-400" />
-                          <select 
-                            value={simulatedCity}
-                            onChange={(e) => setSimulatedCity(e.target.value)}
-                            className="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-100 font-medium"
-                          >
-                            <option value="Kyoto, Japan">Kyoto, Japan (Cultural & Historic)</option>
-                            <option value="Reykjavik, Iceland">Reykjavik, Iceland (Nature & Geothermal)</option>
-                            <option value="Zurich, Switzerland">Zurich, Switzerland (Alpine & Urban)</option>
-                          </select>
+                          <AlertTriangle className="w-4 h-4 text-emerald-400" />
+                          <span>Road Hazard Classifier & Proximity Broadcast</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-slate-400 font-mono">Duration:</span>
-                        {[2, 3, 5].map((d) => (
+                        <span className="text-xs text-slate-400 font-mono">Simulate Hazard:</span>
+                        {(['pothole', 'crack', 'debris'] as const).map((h) => (
                           <button
-                            key={d}
-                            onClick={() => setSimulatedDays(d)}
-                            className={`px-2.5 py-1 rounded-lg text-xs font-mono ${
-                              simulatedDays === d
+                            key={h}
+                            onClick={() => setSelectedHazard(h)}
+                            className={`px-2.5 py-1 rounded-lg text-xs font-mono uppercase ${
+                              selectedHazard === h
                                 ? 'bg-emerald-500 text-slate-950 font-bold'
-                                : 'bg-slate-800 text-slate-300'
+                                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
                             }`}
                           >
-                            {d} Days
+                            {h}
                           </button>
                         ))}
                       </div>
                     </div>
 
-                    {/* Simulated Generated Route Schedule */}
-                    <div className="space-y-2 pt-2 border-t border-slate-800">
-                      <div className="text-xs font-mono text-emerald-400">Generated Itinerary for {simulatedCity}:</div>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80">
-                          <div className="text-xs font-bold text-slate-200">Day 1: Arrival & Historic Core</div>
-                          <p className="text-[11px] text-slate-400 mt-1">09:00 Central Station → 11:30 Heritage Shrine walk → 14:00 Artisanal Ramen</p>
-                          <span className="text-[9px] font-mono text-emerald-400 mt-2 block">Transit: 18m train</span>
+                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <div className="text-xs font-mono text-slate-400 flex items-center justify-between">
+                          <span>VLM Vision Output:</span>
+                          <span className="text-emerald-400">Confidence: 94.8%</span>
                         </div>
-                        <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80">
-                          <div className="text-xs font-bold text-slate-200">Day 2: Mountain Trail & Vista</div>
-                          <p className="text-[11px] text-slate-400 mt-1">08:00 Early bamboo forest ascent → 13:00 Zen Tea Tasting → 18:00 Lantern Alley</p>
-                          <span className="text-[9px] font-mono text-emerald-400 mt-2 block">Transit: 25m bus</span>
+                        <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 space-y-1">
+                          <div>Severity: <span className="text-rose-400 font-bold">CRITICAL HIGH</span></div>
+                          <div>Type: <span className="text-cyan-300 font-semibold">{selectedHazard.toUpperCase()}</span> (Depth ~8cm)</div>
+                          <div>Geo-Coordinates: <span className="text-emerald-400">2.2341° N, 102.2789° E</span></div>
                         </div>
-                        <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80">
-                          <div className="text-xs font-bold text-slate-200">Day 3: Modern Arts & Departure</div>
-                          <p className="text-[11px] text-slate-400 mt-1">10:00 Contemporary Media Pavilions → 15:00 Souvenir Market → Airport Express</p>
-                          <span className="text-[9px] font-mono text-emerald-400 mt-2 block">Transit: 40m express</span>
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="text-xs font-mono text-slate-400 flex items-center justify-between">
+                          <span>Proximity Push Broadcast:</span>
+                          <span className="text-amber-400">Radius: {alertRadius}m</span>
+                        </div>
+                        <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 space-y-2">
+                          <div className="flex items-center gap-2 text-amber-300">
+                            <Bell className="w-4 h-4 text-amber-400" />
+                            <span>OneSignal / Firebase Broadcast Sent</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="100"
+                            max="1000"
+                            step="100"
+                            value={alertRadius}
+                            onChange={(e) => setAlertRadius(Number(e.target.value))}
+                            className="w-full accent-emerald-400"
+                          />
+                          <div className="text-[10px] text-slate-500">Drivers entering within {alertRadius}m receive audio chime</div>
                         </div>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {project.id === 'cinepass' && (
+                {/* Case 3: Studify AI Tutoring Platform */}
+                {project.id === 'studify' && (
                   <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
                       <div>
-                        <div className="text-xs text-slate-400 font-mono">Live WebSocket Seat Map</div>
-                        <div className="text-sm font-semibold text-slate-100 flex items-center gap-1.5 mt-1">
-                          <Ticket className="w-4 h-4 text-sky-400" />
-                          Auditorium Hall 4 — Interstellar (IMAX 70mm)
+                        <div className="text-xs text-slate-400 font-mono">Dual-Embedding Semantic RAG Engine</div>
+                        <div className="text-sm font-semibold text-slate-100 flex items-center gap-2 mt-1">
+                          <Search className="w-4 h-4 text-sky-400" />
+                          <span>E5-Small (384d) + BGE-M3 (1024d) Hybrid Search</span>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <div className="text-xs font-mono text-emerald-400">Selected: {selectedSeat.join(', ') || 'None'}</div>
-                        <div className="text-[10px] text-slate-400">Total: ${selectedSeat.length * 18.50} SGD</div>
-                      </div>
+                      <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
+                        CodeNection 2025 Winner
+                      </span>
                     </div>
 
-                    {/* Interactive Auditorium Seat Grid */}
-                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-col items-center">
-                      <div className="w-3/4 h-2 bg-gradient-to-r from-transparent via-sky-400/80 to-transparent rounded-full mb-6 shadow-[0_0_12px_rgba(56,189,248,0.5)]" />
-                      <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-4">Cinema Screen</div>
-
-                      <div className="grid grid-cols-8 gap-2">
-                        {['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8',
-                          'E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8',
-                          'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8'].map((seat) => {
-                          const isOccupied = ['D3', 'D4', 'F7', 'F8'].includes(seat);
-                          const isSelected = selectedSeat.includes(seat);
-
-                          return (
-                            <button
-                              key={seat}
-                              disabled={isOccupied}
-                              onClick={() => {
-                                if (isSelected) {
-                                  setSelectedSeat(selectedSeat.filter(s => s !== seat));
-                                } else {
-                                  setSelectedSeat([...selectedSeat, seat]);
-                                }
-                              }}
-                              className={`w-7 h-7 rounded-lg text-[10px] font-mono font-semibold transition-all ${
-                                isOccupied
-                                  ? 'bg-slate-800 text-slate-600 cursor-not-allowed'
-                                  : isSelected
-                                  ? 'bg-sky-400 text-slate-950 shadow-lg shadow-sky-400/40 scale-105'
-                                  : 'bg-slate-900 border border-slate-700 text-slate-300 hover:border-sky-400'
-                              }`}
-                            >
-                              {seat}
-                            </button>
-                          );
-                        })}
+                    <div className="space-y-3">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          placeholder="Search lecture transcripts..."
+                          className="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200 outline-none focus:border-sky-400"
+                        />
                       </div>
 
-                      <div className="flex items-center gap-4 mt-4 text-[10px] font-mono text-slate-400">
-                        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded bg-slate-900 border border-slate-700" /> Available</span>
-                        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded bg-sky-400" /> Selected</span>
-                        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded bg-slate-800" /> Reserved</span>
+                      <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+                        <div className="flex items-center justify-between font-mono text-[11px] text-slate-400 pb-1 border-b border-slate-800">
+                          <span>Whisper Transcript Chunk</span>
+                          <span className="text-sky-400">Cosine Match: 0.932 (E5) / 0.918 (BGE-M3)</span>
+                        </div>
+                        <p className="text-slate-300 leading-relaxed font-sans">
+                          "...when we compute the gradient of the loss function with respect to the weights in layer <span className="text-sky-300 font-mono">L</span>, the chain rule allows us to propagate errors backward through intermediate activations..."
+                        </p>
+                        <div className="flex items-center justify-between pt-2">
+                          <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
+                            <Clock className="w-3.5 h-3.5 text-slate-500" />
+                            Timestamp: {videoTimestamp} in Lecture 04
+                          </span>
+                          <a
+                            href="https://studify-platform.vercel.app"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-[11px] font-mono text-sky-400 hover:underline flex items-center gap-1"
+                          >
+                            <span>studify-platform.vercel.app</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {project.id === 'omni-invoice' && (
+                {/* Case 4: TeamSync Project Management System */}
+                {project.id === 'teamsync' && (
+                  <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div>
+                        <div className="text-xs text-slate-400 font-mono">AI Task Decomposition & Stripe Workflow</div>
+                        <div className="text-sm font-semibold text-slate-100 flex items-center gap-2 mt-1">
+                          <Layers className="w-4 h-4 text-purple-400" />
+                          <span>Automated Kanban Pipeline & Next-Intl Multi-Language</span>
+                        </div>
+                      </div>
+                      <span className="text-xs font-mono text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-lg border border-purple-500/20">
+                        Final Year Project
+                      </span>
+                    </div>
+
+                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={aiTaskPrompt}
+                          onChange={(e) => setAiTaskPrompt(e.target.value)}
+                          className="flex-1 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200 outline-none"
+                        />
+                        <button
+                          onClick={() => {
+                            setIsGeneratingTasks(true);
+                            setTimeout(() => setIsGeneratingTasks(false), 600);
+                          }}
+                          className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs font-mono cursor-pointer"
+                        >
+                          {isGeneratingTasks ? 'Decomposing...' : 'AI Breakdown'}
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                        <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
+                          <div className="text-[10px] font-mono text-purple-400">TODO</div>
+                          <div className="font-semibold text-slate-200 mt-1">Verify Stripe Signature</div>
+                          <div className="text-[10px] text-slate-500 mt-1">Est. 2h • High Priority</div>
+                        </div>
+                        <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
+                          <div className="text-[10px] font-mono text-amber-400">IN PROGRESS</div>
+                          <div className="font-semibold text-slate-200 mt-1">Supabase RLS Policy Sync</div>
+                          <div className="text-[10px] text-slate-500 mt-1">Est. 3h • Auth Guard</div>
+                        </div>
+                        <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
+                          <div className="text-[10px] font-mono text-emerald-400">COMPLETED</div>
+                          <div className="font-semibold text-slate-200 mt-1">next-intl (EN/ZH/BM)</div>
+                          <div className="text-[10px] text-slate-500 mt-1">Passed UAT test cases</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Case 5: Moabi PLT Enterprise Systems Suite */}
+                {project.id === 'moabi-systems' && (
                   <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Receipt className="w-4 h-4 text-purple-400" />
+                        <Receipt className="w-4 h-4 text-amber-400" />
                         <div>
-                          <div className="text-sm font-bold text-slate-100">INV-2025-0841</div>
-                          <div className="text-xs text-slate-400">Client: Nexus Cloud Media Pte Ltd</div>
+                          <div className="text-sm font-bold text-slate-100">Moabi QA Test Suite & Technical Documentation</div>
+                          <div className="text-xs text-slate-400">Systems: Food POS • Malaysia LHDN e-Invoice • PMS</div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono text-slate-400">Lifecycle Status:</span>
-                        {(['Draft', 'Sent', 'Paid'] as const).map((s) => (
-                          <button
-                            key={s}
-                            onClick={() => setInvoiceStatus(s)}
-                            className={`px-2.5 py-1 rounded text-xs font-mono ${
-                              invoiceStatus === s
-                                ? 'bg-purple-500 text-slate-950 font-bold'
-                                : 'bg-slate-800 text-slate-400'
-                            }`}
-                          >
-                            {s}
-                          </button>
-                        ))}
-                      </div>
+                      <span className="text-xs font-mono text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-lg border border-amber-400/20">
+                        Internship 2024
+                      </span>
                     </div>
 
                     <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
                       <div className="grid grid-cols-4 font-mono text-slate-500 pb-1 border-b border-slate-800">
-                        <span className="col-span-2">Item Description</span>
-                        <span>Qty</span>
-                        <span className="text-right">Amount (SGD)</span>
+                        <span className="col-span-2">QA Test Scenario / Documentation Artifact</span>
+                        <span>Scope</span>
+                        <span className="text-right">Validation</span>
                       </div>
                       <div className="grid grid-cols-4 text-slate-300">
-                        <span className="col-span-2">Cloud Infrastructure Telemetry Engineering</span>
-                        <span>40 hrs</span>
-                        <span className="text-right font-mono">$3,800.00</span>
+                        <span className="col-span-2">LHDN e-Invoice XML/JSON Schema Validation</span>
+                        <span>e-Invoice</span>
+                        <span className="text-right font-mono text-emerald-400">PASSED (100%)</span>
                       </div>
                       <div className="grid grid-cols-4 text-slate-300">
-                        <span className="col-span-2">Tailwind Design System Token Audit</span>
-                        <span>1 Sprint</span>
-                        <span className="text-right font-mono">$1,450.00</span>
+                        <span className="col-span-2">Kitchen Display System (KDS) Realtime Sync</span>
+                        <span>Food POS</span>
+                        <span className="text-right font-mono text-emerald-400">PASSED (&lt;150ms)</span>
                       </div>
-                      <div className="pt-2 border-t border-slate-800 flex justify-between font-mono font-bold text-emerald-400">
-                        <span>Total (Incl. 9% GST):</span>
-                        <span>$5,722.50 SGD</span>
+                      <div className="grid grid-cols-4 text-slate-300">
+                        <span className="col-span-2">Technical API & Stakeholder Operation Manuals</span>
+                        <span>PMS & Systems</span>
+                        <span className="text-right font-mono text-cyan-400">PUBLISHED</span>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* Default Fallback Simulator for other projects */}
-                {['auracraft', 'devpulse'].includes(project.id) && (
+                {/* Default Fallback for others */}
+                {!['tripify', 'pavra', 'studify', 'teamsync', 'moabi-systems'].includes(project.id) && (
                   <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
                     <div className="text-sm font-semibold text-slate-200">
                       Live Environment Simulator: {project.title}
@@ -306,14 +512,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     <p className="text-xs text-slate-400 leading-relaxed">
                       {project.fullOverview}
                     </p>
-                    <div className="grid grid-cols-3 gap-2 text-center pt-2">
-                      {project.stats?.map((s, i) => (
-                        <div key={i} className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-                          <div className="text-xs text-slate-400 font-mono">{s.label}</div>
-                          <div className="text-base font-bold text-emerald-400 mt-0.5">{s.value}</div>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 )}
               </div>
@@ -324,7 +522,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               <div className="space-y-5">
                 <div>
                   <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">
-                    Problem Statement & Solution
+                    Problem Statement & Engineering Solution
                   </h4>
                   <p className="text-sm text-slate-300 leading-relaxed">
                     {project.fullOverview}
@@ -347,7 +545,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
                 <div>
                   <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
-                    Technologies in Production
+                    Technologies in Stack
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((t) => (
@@ -377,7 +575,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   {project.stats?.map((stat, idx) => (
                     <div key={idx} className="p-4 rounded-xl bg-[#090d16] border border-slate-800 text-center">
                       <div className="text-xs font-mono text-slate-400">{stat.label}</div>
-                      <div className="text-xl font-bold font-display text-slate-100 mt-1">{stat.value}</div>
+                      <div className="text-lg font-bold font-display text-slate-100 mt-1">{stat.value}</div>
                     </div>
                   ))}
                 </div>
@@ -391,15 +589,26 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               Role: <span className="text-emerald-400">{project.role}</span>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+              {project.videoUrl && (
+                <a
+                  href={project.videoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-rose-500/10 border border-rose-500/30 hover:bg-rose-500/20 text-rose-300 text-xs font-medium transition-colors"
+                >
+                  <Video className="w-3.5 h-3.5" />
+                  <span>Pitch Video</span>
+                </a>
+              )}
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 text-xs font-medium transition-colors"
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 text-xs font-medium transition-colors"
               >
                 <Github className="w-3.5 h-3.5" />
-                <span>GitHub Repo</span>
+                <span>GitHub</span>
               </a>
               <a
                 href={project.liveUrl}
@@ -407,7 +616,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 rel="noreferrer"
                 className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition-colors shadow-md shadow-emerald-500/20"
               >
-                <span>Launch Production URL</span>
+                <span>Live App / Deployment</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>

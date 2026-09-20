@@ -106,17 +106,17 @@ export const About: React.FC<{ onNavigate: (section: string) => void }> = ({ onN
                 The Story Behind the Code
               </h3>
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                I am an Information Technology student at the National University of Technology, driven by a fascination for how code transforms into tangible, emotive user experiences. While many developers specialize strictly in back-end logic or purely in surface aesthetics, I thrive right at the intersection.
+                I am a Software Developer and Computer Science undergraduate at <span className="text-emerald-300 font-semibold">Multimedia University (MMU)</span>. Having achieved an academic CGPA of <span className="text-emerald-400 font-mono font-semibold">3.93 / 4.00</span> in my Diploma in Information Technology, I approach engineering with both scientific rigor and a relentless drive for human-centered digital experiences.
               </p>
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                During my software engineering internship at <span className="text-emerald-300 font-semibold">CloudPulse Labs</span>, I designed and deployed customer-facing metrics telemetry dashboards that cut initial load latencies by 32%. I spent days tuning React re-renders and crafting design tokens in Figma so that components matched code line-by-line.
+                During my software engineering internship at <span className="text-cyan-300 font-semibold">Moabi PLT</span>, I contributed to three enterprise production systems — Food POS, Malaysia LHDN-compliant e-Invoicing, and Project Management. I streamlined checkout workflows, redesigned user validation journeys, and collaborated closely across engineering, QA, and business stakeholders.
               </p>
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                When I'm not writing strict TypeScript or profiling database queries in PostgreSQL, you'll find me exploring generative canvas shaders, prototyping design tokens, and leading student engineering hackathons.
+                In competitive arenas, I thrive on turning complex AI breakthroughs into intuitive real-world products. As Team Leader, I guided <span className="text-emerald-300 font-semibold">Pavra</span> to the Winner title at <span className="text-slate-100 font-semibold">UNIMAS 8.0</span> using Google Gemma 3 4B vision-language models for road damage classification. In <span className="text-slate-100 font-semibold">CodeNection 2025</span>, our team captured another championship with <span className="text-cyan-300 font-semibold">Studify</span>, engineering dual-embedding semantic search (E5-Small + BGE-M3) and Whisper video comprehension.
               </p>
 
               <div className="pt-4 border-t border-slate-800/80 flex flex-wrap gap-2">
-                {['TypeScript First', 'Atomic Architecture', 'Figma Precision', 'Accessible (WCAG AA)', 'Micro-Interactions'].map((badge) => (
+                {['Flutter & Dart', 'Next.js 15 & React 19', 'Supabase & PostgreSQL', 'Gemma 3 VLM', 'Dual-Embedding RAG', 'Figma & UI/UX', 'Moabi Enterprise Systems'].map((badge) => (
                   <span
                     key={badge}
                     className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700/60 text-xs font-mono text-slate-300"
@@ -132,10 +132,10 @@ export const About: React.FC<{ onNavigate: (section: string) => void }> = ({ onN
               <Award className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1" />
               <div>
                 <div className="font-semibold text-sm text-emerald-300 mb-1">
-                  1st Place Winner — HackAsia 2024
+                  2x National Hackathon Champion (UNIMAS 8.0 & CodeNection 2025)
                 </div>
                 <div className="text-xs text-slate-300 leading-relaxed">
-                  Honored as grand champion out of 90 collegiate teams for architecting "ResQ-AI", an emergency offline supply chain distributor combining geospatial maps and real-time offline PWAs.
+                  Recognized for architecting "Pavra" (vision AI road hazard mapping) and "Studify" (multimodal AI tutoring platform) — blending high-precision algorithms with intuitive user interfaces.
                 </div>
               </div>
             </div>
@@ -149,25 +149,29 @@ export const About: React.FC<{ onNavigate: (section: string) => void }> = ({ onN
                 <GraduationCap className="w-5 h-5 text-cyan-400" />
                 <span>Education & Academic Standing</span>
               </div>
-              <div className="space-y-2">
-                <div className="text-sm font-semibold text-slate-200">
-                  {portfolioData.education[0].degree}
-                </div>
-                <div className="text-xs text-slate-400 flex items-center justify-between">
-                  <span>{portfolioData.education[0].institution}</span>
-                  <span className="font-mono text-emerald-400 font-medium">{portfolioData.education[0].period}</span>
-                </div>
-                <div className="text-xs font-mono text-emerald-300 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 inline-block">
-                  GPA: {portfolioData.education[0].gpa}
-                </div>
-                <ul className="text-xs text-slate-400 space-y-1.5 pt-2">
-                  {portfolioData.education[0].details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start gap-1.5">
-                      <ChevronRight className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="space-y-4">
+                {portfolioData.education.map((edu) => (
+                  <div key={edu.id} className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+                    <div className="text-sm font-semibold text-slate-100">
+                      {edu.degree}
+                    </div>
+                    <div className="text-xs text-slate-400 flex items-center justify-between">
+                      <span>{edu.institution}</span>
+                      <span className="font-mono text-emerald-400 font-medium">{edu.period}</span>
+                    </div>
+                    <div className="text-xs font-mono text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 inline-block">
+                      {edu.gpa}
+                    </div>
+                    <ul className="text-[11px] text-slate-400 space-y-1 pt-1">
+                      {edu.details.map((detail, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5">
+                          <ChevronRight className="w-3 h-3 text-cyan-400 flex-shrink-0 mt-0.5" />
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -181,22 +185,22 @@ export const About: React.FC<{ onNavigate: (section: string) => void }> = ({ onN
                 <div className="flex items-start gap-2.5">
                   <div className="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
                   <div>
-                    <span className="font-semibold text-slate-200">Full-Stack & Distributed Systems:</span>
-                    <p className="text-slate-400 mt-0.5">Focusing on high-concurrency Node.js / Go services, PostgreSQL, and streaming edge infrastructure.</p>
+                    <span className="font-semibold text-slate-200">AI Systems & Multimodal Pipelines:</span>
+                    <p className="text-slate-400 mt-0.5">Integrating vision-language models (Gemma 3), dual-embedding RAG, and Whisper audio models into responsive products.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <div className="w-2 h-2 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" />
                   <div>
-                    <span className="font-semibold text-slate-200">Design Engineering:</span>
-                    <p className="text-slate-400 mt-0.5">Creating cohesive design systems that streamline collaboration between product teams and developers.</p>
+                    <span className="font-semibold text-slate-200">Mobile & Full-Stack Engineering:</span>
+                    <p className="text-slate-400 mt-0.5">Architecting clean Flutter cross-platform mobile apps and Next.js 15 App Router web ecosystems with Supabase & PostgreSQL.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <div className="w-2 h-2 rounded-full bg-violet-400 mt-1.5 flex-shrink-0" />
                   <div>
-                    <span className="font-semibold text-slate-200">Creative Web Craftsmanship:</span>
-                    <p className="text-slate-400 mt-0.5">Pushing boundaries of micro-animations, accessible ergonomics, and editorial digital storytelling.</p>
+                    <span className="font-semibold text-slate-200">UI/UX & Design Systems:</span>
+                    <p className="text-slate-400 mt-0.5">Crafting frictionless user workflows, ergonomic navigation patterns, and accessible design tokens tested in enterprise production.</p>
                   </div>
                 </div>
               </div>

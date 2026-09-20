@@ -119,16 +119,29 @@ export const ContactSection: React.FC = () => {
                 <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800/60">
                   <MapPin className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                   <div>
-                    <div className="text-slate-200 font-medium">Location & Work Rights</div>
-                    <div>{portfolioData.personal.location} (Open to Global Relocation)</div>
+                    <div className="text-slate-200 font-medium">Location & Region</div>
+                    <div>{portfolioData.personal.location} (Open to Remote / Relocation)</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                  <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <div>
-                    <div className="text-slate-200 font-medium">Direct Telephone</div>
-                    <div>{portfolioData.personal.phone}</div>
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900/50 border border-slate-800/60">
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <div>
+                      <div className="text-slate-200 font-medium">Direct Telephone / WhatsApp</div>
+                      <div>{portfolioData.personal.phone}</div>
+                    </div>
                   </div>
+                  {portfolioData.personal.whatsapp && (
+                    <a
+                      href={`https://wa.me/${portfolioData.personal.whatsapp.replace(/\D/g, '')}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 text-[11px] font-semibold transition-colors flex items-center gap-1"
+                    >
+                      Chat
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -272,7 +285,7 @@ export const ContactSection: React.FC = () => {
                       </span>
                     ) : (
                       <span className="flex items-center gap-2">
-                        <span>Send Message to Alex</span>
+                        <span>Send Message to {portfolioData.personal.name}</span>
                         <Send className="w-4 h-4" />
                       </span>
                     )}

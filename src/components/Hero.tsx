@@ -11,7 +11,8 @@ import {
   ChevronDown, 
   Code,
   Layers,
-  TerminalSquare
+  TerminalSquare,
+  Phone
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { InteractiveIdentity } from './InteractiveIdentity';
@@ -39,19 +40,29 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenResume }) => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-6 flex flex-col items-start text-left space-y-6"
         >
-          {/* Status Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0d1422]/90 border border-emerald-500/30 text-emerald-400 text-xs font-mono shadow-lg shadow-emerald-500/5 backdrop-blur-md"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span>Available for Full-Stack & Engineering Roles</span>
-          </motion.div>
+          {/* Status Badge & Avatar */}
+          <div className="flex items-center gap-3">
+            {portfolioData.personal.avatar && (
+              <img 
+                src={portfolioData.personal.avatar} 
+                alt={portfolioData.personal.name}
+                referrerPolicy="no-referrer"
+                className="w-11 h-11 rounded-full object-cover border-2 border-emerald-400/80 shadow-lg shadow-emerald-500/20"
+              />
+            )}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0d1422]/90 border border-emerald-500/30 text-emerald-400 text-xs font-mono shadow-lg shadow-emerald-500/5 backdrop-blur-md"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span>{portfolioData.personal.availability}</span>
+            </motion.div>
+          </div>
 
           {/* Large Animated Name & Title */}
           <div className="space-y-2">
@@ -63,8 +74,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenResume }) => {
             >
               Hi, I'm <br />
               <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
-                {portfolioData.personal.name}.
+                {portfolioData.personal.name}
               </span>
+              {portfolioData.personal.chineseName && (
+                <span className="text-2xl sm:text-3xl font-medium text-slate-400 ml-3">
+                  ({portfolioData.personal.chineseName})
+                </span>
+              )}
             </motion.h1>
 
             <motion.p
@@ -73,11 +89,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenResume }) => {
               transition={{ delay: 0.35, duration: 0.7 }}
               className="text-lg sm:text-xl font-medium text-slate-300 tracking-tight flex items-center gap-2 flex-wrap"
             >
-              <span className="text-emerald-400 font-mono">IT Student</span>
+              <span className="text-emerald-400 font-mono">Web App & Software Developer</span>
               <span className="text-slate-600">/</span>
-              <span className="text-slate-200">Software Developer</span>
+              <span className="text-slate-200">Full-Stack & Systems</span>
               <span className="text-slate-600">/</span>
-              <span className="text-cyan-400 font-mono">UI/UX Enthusiast</span>
+              <span className="text-cyan-400 font-mono">AI Workspaces</span>
             </motion.p>
           </div>
 
@@ -174,15 +190,28 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenResume }) => {
                 rel="noreferrer"
                 id="hero-social-twitter"
                 className="p-2 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-sky-400 hover:border-sky-500/40 transition-colors"
-                aria-label="Twitter / X Profile"
+                aria-label="GitHub Profile"
               >
                 <Twitter className="w-4 h-4" />
               </a>
+              {portfolioData.personal.whatsapp && (
+                <a
+                  href={`https://wa.me/${portfolioData.personal.whatsapp.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  id="hero-social-whatsapp"
+                  className="p-2 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40 transition-colors"
+                  aria-label="WhatsApp"
+                  title={`WhatsApp: ${portfolioData.personal.phone}`}
+                >
+                  <Phone className="w-4 h-4" />
+                </a>
+              )}
             </div>
 
             <div className="ml-auto hidden sm:flex items-center gap-2 text-xs font-mono text-slate-400">
               <TerminalSquare className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Singapore / Global Remote</span>
+              <span>{portfolioData.personal.location}</span>
             </div>
           </motion.div>
         </motion.div>

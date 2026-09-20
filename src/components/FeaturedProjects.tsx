@@ -10,7 +10,8 @@ import {
   Maximize2,
   Code,
   Terminal,
-  Activity
+  Activity,
+  Video
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { ProjectItem } from '../types';
@@ -176,6 +177,19 @@ export const FeaturedProjects: React.FC = () => {
                         <span>GitHub</span>
                       </a>
 
+                      {project.videoUrl && (
+                        <a
+                          href={project.videoUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          id={`btn-video-${project.id}`}
+                          className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 hover:bg-rose-500/20 text-xs font-medium transition-colors"
+                        >
+                          <Video className="w-3.5 h-3.5 text-rose-400" />
+                          <span>Pitch Video</span>
+                        </a>
+                      )}
+
                       <a
                         href={project.liveUrl}
                         target="_blank"
@@ -204,7 +218,7 @@ export const FeaturedProjects: React.FC = () => {
                         </div>
                         <div className="px-3 py-1 rounded-md bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 flex items-center gap-1">
                           <span className="text-emerald-400 font-bold">https://</span>
-                          {project.id}.alexchen.dev
+                          {project.id === 'tripify' ? 'tripify-agent.vercel.app' : project.id === 'studify' ? 'studify-platform.vercel.app' : project.id === 'teamsync' ? 'team-sync-pms.vercel.app' : `${project.id}.weixuan.dev`}
                         </div>
                         <span className="text-[10px] font-mono text-slate-500">200 OK</span>
                       </div>

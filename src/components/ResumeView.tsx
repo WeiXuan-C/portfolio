@@ -78,8 +78,8 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
   // Filter projects depending on 1-page vs 2-page or type
   const getSelectedProjects = () => {
     if (config.isCompactOnePage) {
-      if (config.type === 'frontend') {
-        return portfolioData.projects.filter(p => ['tripify', 'auracraft'].includes(p.id));
+      if (config.type === 'frontend' || config.type === 'uiux') {
+        return portfolioData.projects.filter(p => ['pavra', 'studify', 'moabi-systems'].includes(p.id));
       }
       return portfolioData.projects.slice(0, 3);
     }
@@ -220,11 +220,11 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
               </a>
               <span>•</span>
               <a href={portfolioData.personal.github} className="hover:text-slate-900 underline">
-                GitHub: github.com/alexchendev
+                GitHub: {portfolioData.personal.github.replace('https://', '')}
               </a>
               <span>•</span>
               <a href={portfolioData.personal.linkedin} className="hover:text-slate-900 underline">
-                LinkedIn: linkedin.com/in/alexchendev
+                LinkedIn: {portfolioData.personal.linkedin.replace('https://', '')}
               </a>
             </div>
           </header>

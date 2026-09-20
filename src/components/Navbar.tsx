@@ -62,8 +62,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           }}
           className="pointer-events-auto group flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#0d121c]/80 border border-slate-800/80 backdrop-blur-md hover:border-emerald-500/50 transition-all text-left shadow-lg shadow-black/40"
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 via-teal-400 to-cyan-400 flex items-center justify-center text-slate-950 font-bold text-xs tracking-wider shadow-inner group-hover:scale-105 transition-transform">
-            AC
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 via-teal-400 to-cyan-400 flex items-center justify-center text-slate-950 font-bold text-xs tracking-wider shadow-inner group-hover:scale-105 transition-transform overflow-hidden">
+            {portfolioData.personal.avatar ? (
+              <img 
+                src={portfolioData.personal.avatar} 
+                alt={portfolioData.personal.name} 
+                className="w-full h-full object-cover" 
+              />
+            ) : (
+              'WX'
+            )}
           </div>
           <div className="flex flex-col">
             <span className="text-xs font-semibold text-slate-100 tracking-tight flex items-center gap-1.5">
