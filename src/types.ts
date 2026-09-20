@@ -1,5 +1,6 @@
 export interface PersonalInfo {
   name: string;
+  chineseName?: string;
   title: string;
   shortTitle: string;
   statement: string;

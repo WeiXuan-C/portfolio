@@ -202,7 +202,7 @@ export const FeaturedProjects: React.FC = () => {
                       <div className="space-y-3 pt-3">
                         <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono">
                           <Lock className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-                          <span>企业实习交付 · 公司商业机密受保密协议 (NDA) 保护，无公开链接 / 无 Demo</span>
+                          <span>Company Internship Delivery · Confidential Enterprise Software (NDA Protected, No Public Links or Demo)</span>
                         </div>
                         <motion.button
                           whileHover={{ scale: 1.02 }}
@@ -212,7 +212,7 @@ export const FeaturedProjects: React.FC = () => {
                           className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#14141e] border border-amber-500/30 hover:border-amber-400 text-amber-300 hover:bg-amber-500/10 font-bold text-xs transition-all cursor-pointer shadow-md"
                         >
                           <FileText className="w-3.5 h-3.5 text-amber-400" />
-                          <span>查看实习职责与 QA 测试详情 (Internship Details)</span>
+                          <span>View Internship Responsibilities & QA Testing Details</span>
                         </motion.button>
                       </div>
                     ) : (

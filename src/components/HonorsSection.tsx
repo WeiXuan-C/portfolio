@@ -105,7 +105,7 @@ export const HonorsSection: React.FC<HonorsSectionProps> = ({ onNavigateToProjec
                     : 'text-neutral-400 hover:text-neutral-200'
                 }`}
               >
-                重点摘要 (Concise)
+                Concise Summary
               </button>
               <button
                 id="honors-view-detailed"
@@ -116,7 +116,7 @@ export const HonorsSection: React.FC<HonorsSectionProps> = ({ onNavigateToProjec
                     : 'text-neutral-400 hover:text-neutral-200'
                 }`}
               >
-                完整凭证 (Detailed)
+                Detailed Credentials
               </button>
             </div>
           </div>
@@ -241,7 +241,7 @@ export const HonorsSection: React.FC<HonorsSectionProps> = ({ onNavigateToProjec
                           onClick={() => setExpandedId(isExpanded ? null : (award.id || award.title))}
                           className="text-[11px] text-neutral-400 hover:text-amber-300 font-mono transition-colors cursor-pointer"
                         >
-                          {isExpanded ? '收起 (Less)' : '详情 (More)'}
+                          {isExpanded ? 'Show Less' : 'Show More'}
                         </button>
                       )}
 

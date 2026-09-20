@@ -20,7 +20,7 @@ export const InteractiveTerminal: React.FC<{ onOpenResume?: () => void }> = ({ o
       command: 'whoami',
       output: (
         <div className="text-amber-300 font-mono">
-          Chong Wei Xuan (张玮瑄) — Software Engineering Undergraduate (MMU Cyberjaya • Year 3 Sem 3, CGPA 3.90)
+          Chong Wei Xuan — Software Engineering Undergraduate (MMU Cyberjaya • Year 3 Sem 3, CGPA 3.90)
         </div>
       )
     },

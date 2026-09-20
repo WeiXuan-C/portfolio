@@ -50,7 +50,7 @@ export const InteractiveIdentity: React.FC = () => {
 import { Developer, Experience, AIModel } from '@core/identity';
 
 export const weiXuan: Developer = {
-  name: 'Chong Wei Xuan (张玮瑄)',
+  name: 'Chong Wei Xuan',
   role: 'Software Engineering Undergraduate (Year 3 Sem 3)',
   institution: 'Multimedia University (MMU), Cyberjaya',
   academics: 'Degree CGPA: 3.90 / 4.00 • Diploma CGPA: 3.93',
@@ -209,7 +209,7 @@ export const weiXuan: Developer = {
                 <code>
                   <span className="text-amber-400">import</span> {'{'} <span className="text-yellow-200">Developer</span>, <span className="text-yellow-200">Experience</span>, <span className="text-yellow-200">AIModel</span> {'}'} <span className="text-amber-400">from</span> <span className="text-amber-300">'@core/identity'</span>;{'\n\n'}
                   <span className="text-amber-400">export const</span> <span className="text-yellow-300 font-bold">weiXuan</span>: <span className="text-yellow-200">Developer</span> = {'{'}{'\n'}
-                  {'  '}name: <span className="text-amber-200 font-semibold">'Chong Wei Xuan (张玮瑄)'</span>,{'\n'}
+                  {'  '}name: <span className="text-amber-200 font-semibold">'Chong Wei Xuan'</span>,{'\n'}
                   {'  '}status: <span className="text-amber-200">'Student • Bachelor of CS (SE), MMU Cyberjaya'</span>,{'\n'}
                   {'  '}academics: <span className="text-amber-200">'Degree CGPA: 3.90 (Yr 3 Sem 3) • Diploma: 3.93'</span>,{'\n'}
                   {'  '}honors: [<span className="text-amber-300">'Inventx 2026 Gold Medal'</span>, <span className="text-amber-300">'CodeNection Impact'</span>, <span className="text-amber-300">'UNIMAS 8.0 Double Award'</span>],{'\n'}

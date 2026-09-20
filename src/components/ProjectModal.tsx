@@ -129,9 +129,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           {/* Tab Selector with Smooth Indicator */}
           <div className="flex items-center gap-2 px-6 pt-3 border-b border-amber-500/15 bg-[#08080d] overflow-x-auto no-scrollbar">
             {(project.isConfidential ? [
-              { id: 'overview', label: '实习职责与系统概述 (Internship Overview)' },
-              { id: 'simulation', label: 'QA测试与验证流程 (QA Protocol)' },
-              { id: 'architecture', label: '企业环境与技术栈 (Tech Stack)' },
+              { id: 'overview', label: 'Internship Overview & System Responsibilities' },
+              { id: 'simulation', label: 'QA Testing & Validation Protocol' },
+              { id: 'architecture', label: 'Enterprise Environment & Tech Stack' },
             ] : [
               { id: 'simulation', label: 'Interactive Live Simulation' },
               { id: 'overview', label: 'System Overview & Features' },
@@ -565,7 +565,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                               : 'text-neutral-400 hover:text-neutral-200'
                           }`}
                         >
-                          Key Highlights (重点版)
+                          Key Highlights
                         </button>
                         <button
                           id="modal-awards-full-btn"
@@ -576,7 +576,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                               : 'text-neutral-400 hover:text-neutral-200'
                           }`}
                         >
-                          Full Official (完整官方信息)
+                          Full Official Information
                         </button>
                       </div>
                     </div>
@@ -747,7 +747,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               {project.isConfidential && (
                 <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono">
                   <Lock className="w-3.5 h-3.5 text-amber-400" />
-                  <span>公司机密受保密协议保护 (No Public Links / NDA Protected)</span>
+                  <span>Company Confidential (No Public Links / NDA Protected)</span>
                 </div>
               )}
             </div>

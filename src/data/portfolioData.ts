@@ -3,6 +3,7 @@ import { PortfolioData } from '../types';
 export const portfolioData: PortfolioData = {
   personal: {
     name: "Chong Wei Xuan",
+    chineseName: "",
     title: "Software Developer & Web App Engineer",
     shortTitle: "Web App & Full-Stack Developer",
     tagline: "I don't just build software. I design digital experiences.",
@@ -336,7 +337,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "mmu-fyp",
       role: "Core Developer (TeamSync FYP)",
-      company: "Multimedia University (MMU FIST — Faculty of Information Science and Technology)",
+      company: "Multimedia University (MMU FIST, Melaka)",
       location: "Melaka, Malaysia",
       period: "2025.02 – 2025.07",
       type: "University",
@@ -352,7 +353,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "bachelor-se",
       degree: "Bachelor of Computer Science (Honours) in Software Engineering",
-      institution: "Multimedia University (MMU FCI — Faculty of Computing and Informatics, Cyberjaya)",
+      institution: "Multimedia University (MMU FCI, Cyberjaya)",
       period: "2025.10 – Present (Year 3, Trimester 3)",
       gpa: "CGPA: 3.90 / 4.00 (Year 3 Sem 3)",
       details: [
@@ -374,7 +375,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "diploma-it",
       degree: "Diploma in Information Technology",
-      institution: "Multimedia University (MMU FIST — Faculty of Information Science and Technology, Melaka)",
+      institution: "Multimedia University (MMU FIST, Melaka)",
       period: "2023.08 – 2025.08",
       gpa: "CGPA: 3.93 / 4.00 (High Distinction)",
       details: [
@@ -584,7 +585,7 @@ export const portfolioData: PortfolioData = {
       id: "academic-distinction",
       title: "Academic High Distinction (Diploma CGPA: 3.93) & Degree CGPA: 3.90",
       shortTitle: "Academic High Distinction (CGPA 3.90 / 3.93)",
-      competition: "Multimedia University (MMU FCI & FIST)",
+      competition: "Multimedia University (MMU)",
       project: "MMU Academic Excellence",
       host: "Multimedia University (MMU)",
       award: "High Distinction & Dean's List",
