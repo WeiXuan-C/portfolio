@@ -40,6 +40,7 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
     isCompactOnePage: true
   });
 
+  const [awardsDetailLevel, setAwardsDetailLevel] = useState<'concise' | 'full'>('concise');
   const [copiedNotification, setCopiedNotification] = useState(false);
 
   const handlePrint = () => {
@@ -87,21 +88,21 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
   };
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-slate-100 pt-20 pb-24 px-3 sm:px-6">
+    <div className="min-h-screen bg-[#070709] text-neutral-100 pt-20 pb-24 px-3 sm:px-6">
       {/* Top Floating Control Bar (Hidden on Print) */}
-      <div className="no-print max-w-5xl mx-auto mb-8 flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-[#0e1320]/90 border border-slate-800 shadow-2xl backdrop-blur-xl">
+      <div className="no-print max-w-5xl mx-auto mb-8 flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-[#0c0c12]/95 border border-amber-500/25 shadow-2xl backdrop-blur-xl">
         <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
           <button
             id="resume-back-btn"
             onClick={onBackToPortfolio}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600 text-xs font-semibold transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#12121a] border border-amber-500/20 text-neutral-300 hover:text-white hover:border-amber-500/50 text-xs font-semibold transition-colors cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 text-amber-400" />
             <span>Back to Portfolio</span>
           </button>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+            <span className="text-xs font-mono text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/30">
               ATS-Optimized Single Source of Truth
             </span>
           </div>
@@ -111,12 +112,12 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
         <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-end">
           {/* Preset Selector */}
           <div className="flex items-center gap-1.5 text-xs font-mono">
-            <span className="text-slate-400">Target:</span>
+            <span className="text-neutral-400">Target:</span>
             <select
               id="resume-type-select"
               value={config.type}
               onChange={(e) => setConfig({ ...config, type: e.target.value as ResumeType })}
-              className="bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 outline-none"
+              className="bg-[#12121a] border border-amber-500/30 rounded-lg px-2.5 py-1.5 text-xs text-amber-200 outline-none focus:border-amber-400"
             >
               <option value="software">Software Developer (General)</option>
               <option value="frontend">Frontend Specialist</option>
@@ -129,10 +130,10 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
           <button
             id="resume-density-toggle"
             onClick={() => setConfig({ ...config, isCompactOnePage: !config.isCompactOnePage })}
-            className={`px-3 py-1.5 rounded-lg text-xs font-mono border transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono border transition-colors cursor-pointer ${
               config.isCompactOnePage
-                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                : 'bg-slate-900 text-slate-300 border-slate-700'
+                ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold'
+                : 'bg-[#12121a] text-neutral-300 border-amber-500/20'
             }`}
           >
             {config.isCompactOnePage ? 'Mode: 1-Page Compact' : 'Mode: 2-Page Detailed'}
@@ -142,7 +143,7 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
           <button
             id="resume-export-pdf-btn"
             onClick={handlePrint}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/25 hover:brightness-110 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-neutral-950 font-bold text-xs shadow-lg shadow-amber-500/25 hover:brightness-110 transition-all cursor-pointer"
           >
             <Printer className="w-4 h-4" />
             <span>Export PDF / Print</span>
@@ -151,16 +152,16 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
       </div>
 
       {/* Optional Customization Drawer / Checkbox Pill Bar */}
-      <div className="no-print max-w-5xl mx-auto mb-6 p-4 rounded-2xl bg-[#0a0d16] border border-slate-800/80 text-xs font-mono">
-        <div className="text-slate-400 mb-2 flex items-center gap-1.5 font-semibold">
-          <Sliders className="w-3.5 h-3.5 text-emerald-400" />
+      <div className="no-print max-w-5xl mx-auto mb-6 p-4 rounded-2xl bg-[#08080c] border border-amber-500/20 text-xs font-mono">
+        <div className="text-neutral-400 mb-2 flex items-center gap-1.5 font-semibold">
+          <Sliders className="w-3.5 h-3.5 text-amber-400" />
           <span>Toggle Resume Sections to include in Export:</span>
         </div>
         <div className="flex flex-wrap gap-3">
           {(Object.keys(config.sections) as Array<keyof typeof config.sections>).map((secKey) => (
             <label
               key={secKey}
-              className="flex items-center gap-1.5 cursor-pointer text-slate-300 hover:text-white capitalize"
+              className="flex items-center gap-1.5 cursor-pointer text-neutral-300 hover:text-white capitalize"
             >
               <input
                 type="checkbox"
@@ -171,12 +172,43 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
                     sections: { ...config.sections, [secKey]: e.target.checked }
                   })
                 }
-                className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-0"
+                className="rounded border-amber-500/40 bg-[#12121a] text-amber-500 focus:ring-0"
               />
               <span>{secKey}</span>
             </label>
           ))}
         </div>
+
+        {/* Awards display depth selector */}
+        {config.sections.awards && (
+          <div className="flex items-center gap-2 pt-2.5 mt-2.5 border-t border-amber-500/15">
+            <span className="text-neutral-400">Awards Detail Level:</span>
+            <div className="inline-flex rounded-lg bg-[#12121a] p-0.5 border border-amber-500/20">
+              <button
+                id="resume-awards-concise-btn"
+                onClick={() => setAwardsDetailLevel('concise')}
+                className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-all cursor-pointer ${
+                  awardsDetailLevel === 'concise'
+                    ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40'
+                    : 'text-neutral-400 hover:text-neutral-200'
+                }`}
+              >
+                Key Highlights
+              </button>
+              <button
+                id="resume-awards-full-btn"
+                onClick={() => setAwardsDetailLevel('full')}
+                className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-all cursor-pointer ${
+                  awardsDetailLevel === 'full'
+                    ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40'
+                    : 'text-neutral-400 hover:text-neutral-200'
+                }`}
+              >
+                Full Citations
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* The Printable A4 Resume Canvas Container */}
@@ -311,7 +343,7 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
                       </div>
                     </div>
                     <p className="text-xs text-slate-700 leading-snug">
-                      {proj.fullOverview}
+                      {config.isCompactOnePage ? proj.description : proj.fullOverview}
                     </p>
                     <div className="text-[11px] text-slate-600">
                       <span className="font-semibold text-slate-800">Key Engineering:</span> {proj.features.slice(0, 2).join('; ')}
@@ -352,13 +384,30 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onBackToPortfolio }) => 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs" style={{ pageBreakInside: 'avoid' }}>
             {config.sections.awards && (
               <div>
-                <h2 className="text-xs font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-1 mb-2 font-display">
-                  Honours & Awards
-                </h2>
-                <ul className="space-y-1 text-slate-700">
+                <div className="flex items-baseline justify-between border-b border-slate-300 pb-1 mb-2">
+                  <h2 className="text-xs font-bold text-slate-900 uppercase tracking-widest font-display">
+                    Honours & Awards
+                  </h2>
+                  <span className="text-[10px] font-mono text-slate-500 no-print">
+                    ({awardsDetailLevel === 'concise' ? 'Key Highlights' : 'Full Citations'})
+                  </span>
+                </div>
+                <ul className="space-y-1.5 text-slate-700">
                   {portfolioData.awards.map((aw, i) => (
                     <li key={i} className="leading-snug">
-                      <span className="font-bold text-slate-900">{aw.title}</span> ({aw.year}) — {aw.competition}
+                      {awardsDetailLevel === 'concise' ? (
+                        <div>
+                          <span className="font-bold text-slate-900">{aw.shortTitle || aw.title}</span>
+                          <span className="text-slate-500"> ({aw.year})</span>
+                          {aw.host && <span className="text-slate-600"> — {aw.host}</span>}
+                        </div>
+                      ) : (
+                        <div>
+                          <span className="font-bold text-slate-900">{aw.title}</span>
+                          <span className="text-slate-500"> ({aw.year})</span>
+                          {aw.participants && <span className="text-slate-600 text-[10px] font-mono"> [{aw.participants}]</span>}
+                        </div>
+                      )}
                     </li>
                   ))}
                 </ul>

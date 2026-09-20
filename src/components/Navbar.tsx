@@ -45,6 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
+    { id: 'honors', label: 'Honors' },
     { id: 'experience', label: 'Experience' },
     { id: 'uiux', label: 'UI/UX' },
     { id: 'contact', label: 'Contact' }
@@ -60,33 +61,36 @@ export const Navbar: React.FC<NavbarProps> = ({
             if (isResumeMode) onToggleResumeMode(false);
             onNavigate('hero');
           }}
-          className="pointer-events-auto group flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#0d121c]/80 border border-slate-800/80 backdrop-blur-md hover:border-emerald-500/50 transition-all text-left shadow-lg shadow-black/40"
+          className="pointer-events-auto group flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0a0a0e]/90 border border-amber-500/25 backdrop-blur-md hover:border-amber-400/60 transition-all text-left shadow-lg shadow-black/60"
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 via-teal-400 to-cyan-400 flex items-center justify-center text-slate-950 font-bold text-xs tracking-wider shadow-inner group-hover:scale-105 transition-transform overflow-hidden">
-            {portfolioData.personal.avatar ? (
-              <img 
-                src={portfolioData.personal.avatar} 
-                alt={portfolioData.personal.name} 
-                className="w-full h-full object-cover" 
-              />
-            ) : (
-              'WX'
-            )}
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-600 p-[1.5px] shadow-inner group-hover:scale-105 transition-transform overflow-hidden">
+            <div className="w-full h-full rounded-full bg-neutral-950 flex items-center justify-center overflow-hidden">
+              {portfolioData.personal.avatar ? (
+                <img 
+                  src={portfolioData.personal.avatar} 
+                  alt={portfolioData.personal.name} 
+                  className="w-full h-full object-cover" 
+                />
+              ) : (
+                <span className="text-amber-300 font-bold text-xs">WX</span>
+              )}
+            </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-xs font-semibold text-slate-100 tracking-tight flex items-center gap-1.5">
+            <span className="text-xs font-semibold text-neutral-100 tracking-tight flex items-center gap-1.5">
               {portfolioData.personal.name}
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px] text-amber-300 font-normal">({portfolioData.personal.chineseName})</span>
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
             </span>
-            <span className="text-[10px] text-slate-400 font-mono">
-              software.dev
+            <span className="text-[10px] text-neutral-400 font-mono">
+              MMU Cyberjaya • Software Eng
             </span>
           </div>
         </button>
 
         {/* Center: Desktop Nav Links (Hidden in Resume Mode) */}
         {!isResumeMode && (
-          <nav className="hidden md:flex pointer-events-auto items-center gap-1 px-3 py-1.5 rounded-full bg-[#0d121c]/85 border border-slate-800/90 backdrop-blur-xl shadow-xl shadow-black/50">
+          <nav className="hidden md:flex pointer-events-auto items-center gap-1 px-3 py-1.5 rounded-full bg-[#0a0a0e]/90 border border-amber-500/25 backdrop-blur-xl shadow-xl shadow-black/70">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -94,16 +98,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={link.id}
                   id={`nav-link-${link.id}`}
                   onClick={() => onNavigate(link.id)}
-                  className={`relative px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
+                  className={`relative px-3.5 py-1 text-xs font-medium rounded-full transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-emerald-300'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                      ? 'text-amber-300 font-semibold'
+                      : 'text-neutral-400 hover:text-neutral-200 hover:bg-[#14141c]'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 bg-emerald-500/15 border border-emerald-500/30 rounded-full"
+                      className="absolute inset-0 bg-amber-500/15 border border-amber-500/40 rounded-full shadow-[0_0_12px_rgba(245,158,11,0.2)]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -121,10 +125,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             id="nav-recruiter-mode-toggle"
             onClick={onToggleRecruiterMode}
             title="Toggle Recruiter Scanning Mode (low animation, direct summary)"
-            className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border transition-all shadow-md ${
+            className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border transition-all shadow-md cursor-pointer ${
               isRecruiterMode
-                ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-amber-500/10'
-                : 'bg-[#0d121c]/80 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700'
+                ? 'bg-amber-500/25 text-amber-300 border-amber-400 shadow-amber-500/20'
+                : 'bg-[#0a0a0e]/90 text-neutral-400 border-amber-500/20 hover:text-neutral-200 hover:border-amber-500/40'
             }`}
           >
             <UserCheck className="w-3.5 h-3.5 text-amber-400" />
@@ -135,10 +139,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="nav-resume-mode-btn"
             onClick={() => onToggleResumeMode(!isResumeMode)}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-full transition-all shadow-lg ${
+            className={`flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold rounded-full transition-all shadow-lg cursor-pointer ${
               isResumeMode
-                ? 'bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700'
-                : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-semibold shadow-emerald-500/20 hover:brightness-110 hover:shadow-emerald-500/30'
+                ? 'bg-neutral-800 text-neutral-200 border border-neutral-700 hover:bg-neutral-700'
+                : 'bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-neutral-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:brightness-110 hover:shadow-[0_0_25px_rgba(245,158,11,0.45)]'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -150,10 +154,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-mobile-menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-[#0d121c]/90 border border-slate-800 text-slate-300 hover:text-white"
+              className="md:hidden p-2 rounded-full bg-[#0a0a0e]/95 border border-amber-500/30 text-neutral-300 hover:text-amber-300 cursor-pointer"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              {mobileMenuOpen ? <X className="w-4 h-4 text-amber-400" /> : <Menu className="w-4 h-4 text-amber-400" />}
             </button>
           )}
         </div>
@@ -166,7 +170,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden pointer-events-auto mt-2 p-4 rounded-2xl bg-[#0d121c]/95 border border-slate-800 backdrop-blur-2xl shadow-2xl space-y-2"
+            className="md:hidden pointer-events-auto mt-2 p-4 rounded-2xl bg-[#0a0a0e]/95 border border-amber-500/30 backdrop-blur-2xl shadow-2xl space-y-2"
           >
             <div className="grid grid-cols-2 gap-1.5">
               {navLinks.map((link) => (
@@ -177,10 +181,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onNavigate(link.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`px-3 py-2 text-xs font-medium rounded-xl text-left transition-colors ${
+                  className={`px-3 py-2 text-xs font-medium rounded-xl text-left transition-colors cursor-pointer ${
                     activeSection === link.id
-                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                      : 'text-slate-300 hover:bg-slate-800/60'
+                      ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold'
+                      : 'text-neutral-300 hover:bg-neutral-800/60'
                   }`}
                 >
                   {link.label}
@@ -188,13 +192,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </div>
 
-            <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-2">
+            <div className="pt-2 border-t border-amber-500/20 flex items-center justify-between gap-2">
               <button
                 onClick={() => {
                   onToggleRecruiterMode();
                   setMobileMenuOpen(false);
                 }}
-                className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium rounded-xl bg-slate-900 border border-slate-800 text-amber-300"
+                className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium rounded-xl bg-neutral-900 border border-amber-500/30 text-amber-300"
               >
                 <UserCheck className="w-3.5 h-3.5" />
                 <span>{isRecruiterMode ? 'Recruiter ON' : 'Recruiter Mode'}</span>
@@ -204,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onToggleResumeMode(true);
                   setMobileMenuOpen(false);
                 }}
-                className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-xl bg-emerald-500 text-slate-950"
+                className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-bold rounded-xl bg-gradient-to-r from-amber-400 to-yellow-400 text-neutral-950"
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span>Resume / PDF</span>

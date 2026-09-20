@@ -7,6 +7,7 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { SkillsSection } from './components/SkillsSection';
 import { FeaturedProjects } from './components/FeaturedProjects';
+import { HonorsSection } from './components/HonorsSection';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { UiUxShowcase } from './components/UiUxShowcase';
 import { InteractiveTerminal } from './components/InteractiveTerminal';
@@ -47,7 +48,7 @@ export default function App() {
   useEffect(() => {
     if (isResumeMode) return;
 
-    const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'uiux', 'contact'];
+    const sections = ['hero', 'about', 'skills', 'projects', 'honors', 'experience', 'uiux', 'contact'];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 250;
@@ -86,7 +87,7 @@ export default function App() {
   };
 
   return (
-    <div className={`relative min-h-screen bg-[#090b10] text-slate-100 ${isRecruiterMode ? 'recruiter-view' : ''}`}>
+    <div className={`relative min-h-screen bg-[#070709] text-neutral-100 ${isRecruiterMode ? 'recruiter-view' : ''}`}>
       {/* Custom interactive desktop cursor */}
       {!isRecruiterMode && <CustomCursor />}
 
@@ -142,6 +143,7 @@ export default function App() {
               <About onNavigate={scrollToSection} />
               <SkillsSection />
               <FeaturedProjects />
+              <HonorsSection onNavigateToProject={(projId) => scrollToSection('projects')} />
               <ExperienceTimeline />
               <UiUxShowcase />
               <InteractiveTerminal onOpenResume={() => handleToggleResumeMode(true)} />

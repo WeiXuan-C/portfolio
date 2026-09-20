@@ -1,6 +1,5 @@
 export interface PersonalInfo {
   name: string;
-  chineseName?: string;
   title: string;
   shortTitle: string;
   statement: string;
@@ -35,6 +34,17 @@ export interface SkillItem {
   highlight?: string;
 }
 
+export interface ProjectAward {
+  shortName: string;
+  fullName: string;
+  competition: string;
+  award: string;
+  host: string;
+  participants?: string;
+  year: string;
+  isKeyHighlight?: boolean;
+}
+
 export interface ProjectItem {
   id: string;
   title: string;
@@ -43,13 +53,17 @@ export interface ProjectItem {
   fullOverview: string;
   category: 'Full-Stack' | 'AI & Systems' | 'Web App' | 'Frontend';
   role: string;
+  status?: string;
+  awardsList?: ProjectAward[];
   technologies: string[];
   features: string[];
   architectureNotes: string;
-  githubUrl: string;
-  liveUrl: string;
+  githubUrl?: string;
+  liveUrl?: string;
   videoUrl?: string;
   slidesUrl?: string;
+  isConfidential?: boolean;
+  confidentialNotice?: string;
   stats?: { label: string; value: string }[];
   accentColor: string;
 }
@@ -97,10 +111,19 @@ export interface CertificationItem {
 }
 
 export interface AwardItem {
+  id?: string;
   title: string;
+  shortTitle?: string;
   competition: string;
+  project?: string;
+  host?: string;
+  participants?: string;
+  award?: string;
+  awardLevel?: 'Gold' | 'RunnerUp' | 'Excellence' | 'Impact' | 'Honor' | 'Academic';
   year: string;
+  badge?: string;
   description: string;
+  keyHighlight?: boolean;
 }
 
 export interface PortfolioData {

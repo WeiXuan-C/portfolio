@@ -49,60 +49,63 @@ export const SkillsSection: React.FC = () => {
     switch (name.toLowerCase()) {
       case 'typescript':
       case 'javascript':
-        return <FileCode className="w-5 h-5 text-cyan-400" />;
+        return <FileCode className="w-5 h-5 text-amber-400" />;
       case 'python':
       case 'c++':
-        return <Cpu className="w-5 h-5 text-amber-400" />;
+        return <Cpu className="w-5 h-5 text-yellow-400" />;
       case 'php':
-        return <Server className="w-5 h-5 text-indigo-400" />;
+        return <Server className="w-5 h-5 text-amber-300" />;
       case 'react':
       case 'next.js':
-        return <Code2 className="w-5 h-5 text-emerald-400" />;
+        return <Code2 className="w-5 h-5 text-amber-400" />;
+      case 'flutter & dart':
+      case 'flutter':
+        return <Code2 className="w-5 h-5 text-yellow-300" />;
       case 'tailwind css':
       case 'css3 & animations':
-        return <Palette className="w-5 h-5 text-teal-400" />;
+        return <Palette className="w-5 h-5 text-amber-300" />;
       case 'html5 & semantic web':
-        return <Globe className="w-5 h-5 text-orange-400" />;
+        return <Globe className="w-5 h-5 text-amber-400" />;
       case 'node.js':
-        return <Cpu className="w-5 h-5 text-emerald-400" />;
+        return <Cpu className="w-5 h-5 text-amber-400" />;
       case 'postgresql':
-        return <Database className="w-5 h-5 text-sky-400" />;
+        return <Database className="w-5 h-5 text-yellow-400" />;
       case 'supabase':
-        return <Flame className="w-5 h-5 text-emerald-400" />;
+        return <Flame className="w-5 h-5 text-amber-400" />;
       case 'rest apis':
-        return <Layers className="w-5 h-5 text-violet-400" />;
+        return <Layers className="w-5 h-5 text-amber-300" />;
       case 'git & github':
-        return <GitBranch className="w-5 h-5 text-rose-400" />;
+        return <GitBranch className="w-5 h-5 text-amber-400" />;
       case 'figma':
-        return <Palette className="w-5 h-5 text-pink-400" />;
+        return <Palette className="w-5 h-5 text-yellow-300" />;
       case 'vs code':
-        return <TerminalSquare className="w-5 h-5 text-blue-400" />;
+        return <TerminalSquare className="w-5 h-5 text-amber-400" />;
       case 'vercel':
-        return <CloudUpload className="w-5 h-5 text-slate-100" />;
+        return <CloudUpload className="w-5 h-5 text-neutral-100" />;
       default:
-        return <Sparkles className="w-5 h-5 text-emerald-400" />;
+        return <Sparkles className="w-5 h-5 text-amber-400" />;
     }
   };
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 relative border-t border-slate-800/60">
+    <section id="skills" className="py-24 px-4 sm:px-6 relative border-t border-amber-500/15 bg-gradient-to-b from-[#070709] via-[#0b0b0f] to-[#070709]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-3">
-              <Code2 className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono mb-3">
+              <Code2 className="w-3.5 h-3.5 text-amber-400" />
               <span>TECHNICAL CAPABILITIES</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-neutral-100 tracking-tight">
               A Deep, Modern <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-200">
                 Engineering Repertoire.
               </span>
             </h2>
           </div>
-          <p className="text-sm text-slate-400 max-w-md font-mono leading-relaxed">
-            Not just high-level familiarity. Hands-on architectural fluency from typed frontend components down to indexed relational schemas.
+          <p className="text-sm text-neutral-400 max-w-md font-mono leading-relaxed">
+            Hands-on technical depth from QA testing & documentation to full-stack TypeScript, Flutter mobile development, and relational schemas.
           </p>
         </div>
 
@@ -115,15 +118,15 @@ export const SkillsSection: React.FC = () => {
                 key={cat.id}
                 id={`skill-filter-${cat.id}`}
                 onClick={() => setActiveCategory(cat.id as any)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-lg shadow-emerald-500/10'
-                    : 'bg-[#0d121c] text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700'
+                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-lg shadow-amber-500/10 font-bold'
+                    : 'bg-[#0e0e14] text-neutral-400 border border-amber-500/15 hover:text-neutral-200 hover:border-amber-500/30'
                 }`}
               >
                 <span>{cat.label}</span>
                 <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                  isActive ? 'bg-emerald-500 text-slate-950 font-bold' : 'bg-slate-800 text-slate-400'
+                  isActive ? 'bg-amber-400 text-neutral-950 font-bold' : 'bg-neutral-800 text-neutral-400'
                 }`}>
                   {cat.count}
                 </span>
@@ -152,46 +155,42 @@ export const SkillsSection: React.FC = () => {
                     exit={{ opacity: 0, scale: 0.95 }}
                     whileHover={{ y: -3 }}
                     onClick={() => setSelectedSkill(skill)}
-                    className={`p-4 rounded-2xl text-left border transition-all relative overflow-hidden group ${
+                    className={`p-4 rounded-2xl text-left border transition-all relative overflow-hidden group cursor-pointer ${
                       isSelected
-                        ? 'bg-emerald-950/30 border-emerald-500/60 shadow-xl shadow-emerald-500/10 ring-1 ring-emerald-500/30'
-                        : 'bg-[#0c101c]/85 border-slate-800/90 hover:border-slate-700 hover:bg-[#0f1422]'
+                        ? 'bg-amber-950/25 border-amber-500/60 shadow-xl shadow-amber-500/10 ring-1 ring-amber-500/30'
+                        : 'bg-[#0b0b10] border-amber-500/15 hover:border-amber-500/30 hover:bg-[#121218]'
                     }`}
                   >
                     {/* Active accent strip */}
                     {isSelected && (
-                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400" />
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-yellow-400" />
                     )}
 
                     <div className="flex items-center justify-between mb-3">
-                      <div className="p-2 rounded-xl bg-slate-900 border border-slate-800/80 group-hover:scale-105 transition-transform">
+                      <div className="p-2 rounded-xl bg-[#121218] border border-amber-500/20 group-hover:scale-105 transition-transform">
                         {getSkillIcon(skill.name)}
                       </div>
-                      <span className="text-[10px] font-mono text-slate-400 px-2 py-0.5 rounded-full bg-slate-900 border border-slate-800">
+                      <span className="text-[10px] font-mono text-amber-300 px-2 py-0.5 rounded-full bg-[#161622] border border-amber-500/20">
                         {skill.experienceYears}y exp
                       </span>
                     </div>
 
-                    <div className="font-semibold text-slate-200 text-sm mb-1 group-hover:text-emerald-300 transition-colors">
+                    <div className="font-semibold text-neutral-200 text-sm mb-1 group-hover:text-amber-300 transition-colors">
                       {skill.name}
                     </div>
 
                     {/* Subtle proficiency meter */}
                     <div className="space-y-1 mt-2">
-                      <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                      <div className="flex justify-between text-[10px] font-mono text-neutral-400">
                         <span>Proficiency</span>
-                        <span className="text-emerald-400 font-bold">{skill.level}%</span>
+                        <span className="text-amber-400 font-bold">{skill.level}%</span>
                       </div>
-                      <div className="h-1.5 w-full bg-slate-900 rounded-full overflow-hidden">
+                      <div className="h-1.5 w-full bg-neutral-900 rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${skill.level}%` }}
                           transition={{ duration: 0.8, ease: 'easeOut' }}
-                          className={`h-full rounded-full ${
-                            skill.level >= 90 
-                              ? 'bg-gradient-to-r from-emerald-500 to-teal-400' 
-                              : 'bg-gradient-to-r from-cyan-500 to-blue-500'
-                          }`}
+                          className="h-full rounded-full bg-gradient-to-r from-amber-500 to-yellow-400"
                         />
                       </div>
                     </div>
@@ -207,57 +206,57 @@ export const SkillsSection: React.FC = () => {
               key={selectedSkill.name}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="p-6 rounded-3xl bg-gradient-to-b from-[#0f1422] to-[#0a0d16] border border-emerald-500/30 shadow-2xl shadow-black/70 space-y-5"
+              className="p-6 rounded-3xl bg-gradient-to-b from-[#101017] to-[#0a0a0f] border border-amber-500/30 shadow-2xl shadow-black/80 space-y-5"
             >
-              <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
+              <div className="flex items-center justify-between border-b border-amber-500/20 pb-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30">
+                  <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30">
                     {getSkillIcon(selectedSkill.name)}
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-slate-100">{selectedSkill.name}</div>
-                    <div className="text-xs font-mono text-emerald-400 capitalize">
+                    <div className="text-lg font-bold text-neutral-100">{selectedSkill.name}</div>
+                    <div className="text-xs font-mono text-amber-400 capitalize">
                       Category: {selectedSkill.category}
                     </div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold font-display text-slate-100">{selectedSkill.level}%</div>
-                  <div className="text-[10px] font-mono text-slate-400">Mastery Rating</div>
+                  <div className="text-2xl font-bold font-display text-amber-300">{selectedSkill.level}%</div>
+                  <div className="text-[10px] font-mono text-neutral-400">Mastery Rating</div>
                 </div>
               </div>
 
               {/* Highlight / Specialization */}
               <div>
-                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 font-mono">
+                <div className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2 font-mono">
                   Applied Competency
                 </div>
-                <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 leading-relaxed">
+                <div className="p-3 rounded-xl bg-[#121218] border border-amber-500/20 text-xs text-neutral-300 leading-relaxed">
                   {selectedSkill.highlight}
                 </div>
               </div>
 
               {/* Technical Specifications */}
               <div className="space-y-2 text-xs font-mono">
-                <div className="flex justify-between py-1 border-b border-slate-800/60 text-slate-400">
+                <div className="flex justify-between py-1 border-b border-amber-500/15 text-neutral-400">
                   <span>Years of Active Use:</span>
-                  <span className="text-slate-200">{selectedSkill.experienceYears} Years Continuous</span>
+                  <span className="text-neutral-200">{selectedSkill.experienceYears} Years Continuous</span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-slate-800/60 text-slate-400">
+                <div className="flex justify-between py-1 border-b border-amber-500/15 text-neutral-400">
                   <span>Production Status:</span>
-                  <span className="text-emerald-400 font-semibold">Active in 4+ Projects</span>
+                  <span className="text-amber-400 font-semibold">Active in Multiple Projects</span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-slate-800/60 text-slate-400">
+                <div className="flex justify-between py-1 border-b border-amber-500/15 text-neutral-400">
                   <span>Code Style:</span>
-                  <span className="text-slate-200">Strict Linting & Clean Arch</span>
+                  <span className="text-neutral-200">Strict Typing & Test Coverage</span>
                 </div>
               </div>
 
               {/* Developer Mindset Note */}
-              <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/20 text-[11px] text-emerald-300/90 flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 text-[11px] text-amber-300/90 flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
                 <span>
-                  Constantly evaluated against modern standards. Never adopting libraries simply for trendiness, but for maintainability and user speed.
+                  High engineering standards with methodical testing, comprehensive technical documentation, and performance optimization.
                 </span>
               </div>
             </motion.div>

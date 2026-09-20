@@ -20,20 +20,46 @@
   }
 }
 
-/* Custom subtle scrollbar */
+/* Custom subtle black & gold scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090b10;
+  background: #070709;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f293d;
+  background: #23221e;
+  border: 1px solid rgba(245, 158, 11, 0.2);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #10b981;
+  background: #d4af37;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseGold {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.animate-gold-shimmer {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0) 0%, rgba(245, 158, 11, 0.25) 50%, rgba(212, 175, 55, 0) 100%);
+  background-size: 200% 100%;
+  animation: goldShimmer 3s infinite linear;
+}
+
+.gold-glow {
+  box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.15);
+}
+
+.gold-border-glow {
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.12);
 }
 
 /* Print Specific Rules for Professional A4 Resume Export */

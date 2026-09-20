@@ -52,15 +52,15 @@ export const CustomCursor: React.FC = () => {
     <div className="custom-cursor pointer-events-none fixed inset-0 z-50 overflow-hidden print-hide">
       {/* Outer Follower Ring */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full border border-emerald-400/40 bg-emerald-400/10 backdrop-blur-[1px]"
+        className="fixed top-0 left-0 rounded-full border border-amber-400/40 bg-amber-400/10 backdrop-blur-[1px]"
         animate={{
           x: mousePosition.x - (isHovered ? 24 : 16),
           y: mousePosition.y - (isHovered ? 24 : 16),
           width: isHovered ? 48 : 32,
           height: isHovered ? 48 : 32,
           scale: isClicking ? 0.85 : 1,
-          borderColor: isHovered ? 'rgba(52, 211, 153, 0.8)' : 'rgba(52, 211, 153, 0.3)',
-          backgroundColor: isHovered ? 'rgba(52, 211, 153, 0.15)' : 'rgba(52, 211, 153, 0.05)'
+          borderColor: isHovered ? 'rgba(245, 158, 11, 0.9)' : 'rgba(245, 158, 11, 0.4)',
+          backgroundColor: isHovered ? 'rgba(245, 158, 11, 0.18)' : 'rgba(245, 158, 11, 0.06)'
         }}
         transition={{
           type: 'spring',
@@ -71,7 +71,7 @@ export const CustomCursor: React.FC = () => {
       />
       {/* Inner Dot */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+        className="fixed top-0 left-0 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.9)]"
         animate={{
           x: mousePosition.x - 3,
           y: mousePosition.y - 3,

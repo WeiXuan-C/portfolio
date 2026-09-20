@@ -3,11 +3,10 @@ import { PortfolioData } from '../types';
 export const portfolioData: PortfolioData = {
   personal: {
     name: "Chong Wei Xuan",
-    chineseName: "钟玮萱",
     title: "Software Developer & Web App Engineer",
     shortTitle: "Web App & Full-Stack Developer",
     tagline: "I don't just build software. I design digital experiences.",
-    statement: "Undergraduate in Software Engineering at Multimedia University (MMU) building resilient web applications, collaborative multi-agent AI workspaces, and clean full-stack architectures.",
+    statement: "Undergraduate in Bachelor of Computer Science (Honours) in Software Engineering at Multimedia University (MMU Cyberjaya, Year 3 Sem 3, CGPA 3.90) building resilient web applications, collaborative multi-agent AI workspaces, and clean full-stack architectures.",
     email: "weixuan.chong@gmail.com",
     phone: "+60 11-6520 0275",
     whatsapp: "01165200275",
@@ -17,38 +16,38 @@ export const portfolioData: PortfolioData = {
     linkedin: "https://www.linkedin.com/in/wei-xuan-3a0321326",
     twitter: "https://github.com/WeiXuan-C",
     avatar: "https://avatars.githubusercontent.com/u/130114186?v=4",
-    availability: "Undergraduate @ MMU • Open to Tech Collaboration & Hackathons",
+    availability: "Undergraduate @ MMU Cyberjaya (Year 3 Sem 3) • Open to Tech Collaboration & Hackathons",
     status: "student_and_collaborator"
   },
-  summary: "Passionate Software Developer and Computer Science undergraduate at Multimedia University (Diploma CGPA: 3.93 High Distinction). Hackathon champion (UNIMAS 8.0 Winner for Pavra, CodeNection 2025 Winner for Studify) and contributor to collaborative AI workspaces (Tripify: LangGraph multi-agent planning). Experienced across Next.js 15, React 19, Flutter, TypeScript, Supabase, PostgreSQL, and multi-agent AI systems, alongside hands-on QA testing and technical documentation from an engineering internship at Moabi PLT.",
+  summary: "Passionate Software Developer and Computer Science undergraduate pursuing a Bachelor of Computer Science (Honours) in Software Engineering at Multimedia University Cyberjaya (Year 3 Trimester 3, CGPA: 3.90 / 4.00; Diploma CGPA: 3.93 High Distinction). Multi-hackathon winner across international and national arenas: Inventx 2026 Gold Medal, CodeNection 2025 Most Impactful Project (Studify), UNIMAS 8.0 Product Category 1st Runner-Up & Best Testimonial Award (Pavra), and CodeNection 2026 creator of Tripify (LangGraph multi-agent workspace). Experienced across Next.js 15, React 19, TypeScript, Flutter, Supabase, PostgreSQL, and multi-agent AI systems, alongside hands-on QA testing and technical documentation from Moabi PLT.",
   stats: [
+    {
+      id: "cgpa-degree",
+      label: "Degree CGPA (Yr 3 Sem 3)",
+      value: 3.90,
+      suffix: "",
+      description: "Bachelor of CS (Software Engineering) at MMU Cyberjaya (Diploma: 3.93)"
+    },
+    {
+      id: "awards",
+      label: "Hackathon & Tech Honors",
+      value: 5,
+      suffix: "+",
+      description: "Inventx Gold, CodeNection Impact Award, UNIMAS 8.0 1st Runner-Up & Best Testimonial"
+    },
     {
       id: "projects",
       label: "Engineered Projects",
-      value: 12,
+      value: 10,
       suffix: "+",
-      description: "AI mobile applications, full-stack platforms, and enterprise solutions"
+      description: "Multi-agent AI platforms, mobile vision systems, and enterprise suites"
     },
     {
       id: "tech",
       label: "Technologies Mastered",
       value: 20,
       suffix: "+",
-      description: "Dart/Flutter, Next.js, React, Supabase, PostgreSQL, AI APIs & Docker"
-    },
-    {
-      id: "cgpa",
-      label: "Diploma Academic CGPA",
-      value: 3.93,
-      suffix: "",
-      description: "High Distinction standing at Multimedia University (Faculty of IT)"
-    },
-    {
-      id: "awards",
-      label: "Hackathon Wins",
-      value: 2,
-      suffix: "x",
-      description: "Champion Winner at UNIMAS 8.0 (Pavra) and CodeNection 2025 (Studify)"
+      description: "Next.js 15, React 19, TypeScript, LangGraph, Flutter, Supabase, Postgres"
     }
   ],
   skills: {
@@ -88,13 +87,14 @@ export const portfolioData: PortfolioData = {
     {
       id: "tripify",
       title: "Tripify — Collaborative AI Travel Planning Workspace",
-      tagline: "Map-first collaborative group itinerary workspace powered by LangGraph multi-agent orchestration.",
-      description: "A collaborative web application featuring a flexible pinboard workspace, Google Maps routing, multi-agent AI (Researcher / Planner / Critic), proposal diff voting, and Supabase Realtime synchronization.",
-      fullOverview: "Tripify solves group trip coordination by replacing fragmented chats and spreadsheets with a single, live map-oriented workspace. Built by the Studify 3-person team, Tripify integrates LangGraph multi-agent orchestration where specialized agents (Researcher, Planner, Critic) generate structured itinerary proposals with Value-for-Money reasoning. When real-world disruptions occur (weather, flight delays), the dynamic replanning engine recalculates only affected segments without wiping user edits. Backed by Supabase Postgres, Auth, and Realtime for live voting.",
+      tagline: "Map-first collaborative group itinerary workspace powered by LangGraph multi-agent orchestration. (CodeNection 2026 Project)",
+      description: "CodeNection 2026 Project. A collaborative web application featuring a flexible pinboard workspace, Google Maps routing, multi-agent AI (Researcher / Planner / Critic), proposal diff voting, and Supabase Realtime synchronization.",
+      fullOverview: "Tripify is engineered for CodeNection 2026, solving group trip coordination by replacing fragmented chats and spreadsheets with a single, live map-oriented workspace. Built by the Studify team, Tripify integrates LangGraph multi-agent orchestration where specialized agents (Researcher, Planner, Critic) generate structured itinerary proposals with Value-for-Money reasoning. When disruptions occur (weather, flight delays), dynamic partial replanning recalculates affected routes without wiping user edits. Backed by Supabase Postgres, Auth, and Realtime for live collaborative voting.",
       category: "Web App",
       role: "Backend, Data Architecture & Integrations",
       technologies: ["Next.js 15", "React 19", "TypeScript", "LangGraph", "Supabase", "PostgreSQL", "Supabase Realtime", "Google Maps Platform", "OpenRouter", "Tailwind CSS", "shadcn/ui", "next-intl", "Vercel"],
       features: [
+        "CodeNection 2026 competition entry engineered for real-time group travel orchestration",
         "Map-first interactive itinerary pinboard workspace with Google Maps Places & Route computation",
         "LangGraph multi-agent decision architecture with typed state for Researcher, Planner, and Critic agents",
         "Proposal diff & democratic group voting system to resolve conflicting schedules and budgets",
@@ -107,20 +107,42 @@ export const portfolioData: PortfolioData = {
       liveUrl: "https://tripify-agent.vercel.app",
       videoUrl: "https://youtu.be/nOgfiaMGdHY",
       stats: [
+        { label: "Hackathon", value: "CodeNection 2026" },
         { label: "Live Prototype", value: "Vercel Deployed" },
         { label: "Multi-Agent", value: "LangGraph Loop" },
         { label: "My Role", value: "Backend & Data" }
       ],
-      accentColor: "#38bdf8"
+      accentColor: "#d4af37"
     },
     {
       id: "pavra",
       title: "Pavra — AI-Powered Road Safety Mobile Application",
-      tagline: "The Smarter Roads, The Safer Journeys. UNIMAS 8.0 (2025) National Winner.",
-      description: "A community-driven road safety mobile app that uses Google Gemma 3 4B vision AI to detect road hazards, tags them on interactive Google Maps, and broadcasts proximity alerts.",
-      fullOverview: "Pavra tackles road hazards (potholes, cracks, surface unevenness) through a vision-AI and crowdsourced architecture. Built as a serverless Flutter application backed by Supabase, it runs on-device / API image inference with Google Gemma 3 4B VLM to classify hazard severity. GPS coordinates are mapped in real time, and nearby drivers receive push notifications via OneSignal & Firebase with adjustable alert radii.",
+      tagline: "The Smarter Roads, The Safer Journeys — Real-time AI road hazard detection and driver safety ecosystem.",
+      description: "Mobile road safety application using Google Gemma 3 4B vision AI to detect road hazards, tag GPS coordinates, and broadcast proximity alerts.",
+      fullOverview: "Pavra is an award-winning road safety mobile application (UNIMAS Hackathon 8.0 Product 1st Runner-Up & Best Testimonial). As Team Leader of a 2-person team, Wei Xuan architected a serverless Flutter application backed by Supabase. It runs image inference with Google Gemma 3 4B VLM to classify hazard severity. GPS coordinates are mapped in real time, and nearby drivers receive push notifications via OneSignal & Firebase with adjustable alert radii.",
       category: "AI & Systems",
       role: "Team Leader (2-Member Team)",
+      status: "UNIMAS 8.0 Double Award",
+      awardsList: [
+        {
+          shortName: "UNIMAS 8.0 Product 1st Runner-Up",
+          fullName: "UNIMAS 8.0 Hackathon [Product Category First Runner-Up] hosted by Universiti Malaysia Sarawak (UNIMAS)",
+          competition: "UNIMAS Hackathon 8.0",
+          award: "Product Category First Runner-Up",
+          host: "Universiti Malaysia Sarawak (UNIMAS)",
+          year: "2025 – 2026",
+          isKeyHighlight: true
+        },
+        {
+          shortName: "UNIMAS 8.0 Best Testimonial Award",
+          fullName: "UNIMAS 8.0 Hackathon [Best Testimonial Award] hosted by Universiti Malaysia Sarawak (UNIMAS)",
+          competition: "UNIMAS Hackathon 8.0",
+          award: "Best Testimonial Award",
+          host: "Universiti Malaysia Sarawak (UNIMAS)",
+          year: "2025 – 2026",
+          isKeyHighlight: true
+        }
+      ],
       technologies: ["Flutter", "Dart", "Supabase", "PostgreSQL", "Google Gemma 3 4B", "Google Maps Platform", "OneSignal", "Firebase", "OpenRouter"],
       features: [
         "AI road damage detection & severity classification with Google Gemma 3 4B VLM",
@@ -134,38 +156,81 @@ export const portfolioData: PortfolioData = {
       githubUrl: "https://github.com/WeiXuan-C/Pavra",
       liveUrl: "https://github.com/WeiXuan-C/Pavra",
       stats: [
-        { label: "Recognition", value: "UNIMAS 8.0 Winner" },
+        { label: "Recognition", value: "1st Runner-Up + Testimonial" },
         { label: "Vision AI", value: "Google Gemma 3 4B" },
         { label: "Architecture", value: "Serverless Flutter" }
       ],
-      accentColor: "#10b981"
+      accentColor: "#f59e0b"
     },
     {
       id: "studify",
       title: "Studify — AI-Powered Tutoring & Learning Platform",
-      tagline: "Next-gen educational ecosystem unifying courses, classrooms, and community. CodeNection (2025) Winner.",
-      description: "A full-stack AI tutoring platform with dual-embedding semantic search (E5-Small + BGE-M3), Whisper video transcription Q&A, Stripe payments, and personalized learning paths.",
-      fullOverview: "Studify solves the fragmentation of online education. Built with Next.js 15 and React 19, it integrates an advanced AI layer featuring dual-embedding hybrid search (E5-Small 384d + BGE-M3 1024d) for RAG accuracy, resilient Whisper video transcription with QStash queues, interactive timestamped video Q&A with a ±30s context window, dynamic Mermaid learning paths, and full Stripe Checkout/Connect monetization.",
+      tagline: "Intelligent tutoring ecosystem with dual-embedding semantic search & multimodal video intelligence.",
+      description: "Full-stack AI tutoring platform featuring dual-embedding hybrid search (E5-Small + BGE-M3), Whisper timestamped video Q&A, and interactive learning paths.",
+      fullOverview: "Studify is a 4-time award-winning AI educational platform (Inventx 2026 Gold Medal, CodeNection 2025 Most Impactful Project, YuKeSong 2025 Award of Excellence, and Innovative Minds Honorable Mention). Built with Next.js 15 and React 19, it integrates dual-embedding hybrid search (E5-Small 384d + BGE-M3 1024d) for RAG accuracy, Whisper video transcription with QStash queues, timestamped video Q&A (±30s context window), dynamic Mermaid learning paths, and full Stripe monetization.",
       category: "Full-Stack",
       role: "Core Developer (4-Member Team)",
+      status: "4x Award Winner",
+      awardsList: [
+        {
+          shortName: "Inventx 2026 Gold Medal",
+          fullName: "Inventx 2026 [Gold Medal] hosted by MMU (International Competition)",
+          competition: "Inventx 2026 (International Competition)",
+          award: "Gold Medal",
+          host: "Multimedia University (MMU)",
+          participants: "International Participants",
+          year: "2026",
+          isKeyHighlight: true
+        },
+        {
+          shortName: "CodeNection 2025 Most Impactful Project",
+          fullName: "CodeNection 2025 (900+ participants) [Most Impactful Project] hosted by MMU IT Society",
+          competition: "CodeNection 2025",
+          award: "Most Impactful Project",
+          host: "MMU IT Society",
+          participants: "900+ participants",
+          year: "2025",
+          isKeyHighlight: true
+        },
+        {
+          shortName: "YuKeSong 2025 Award of Excellence",
+          fullName: "YuKeSong2025: Hack whatever you feel like! Unlimited Free-For-All Hackathon (111 participants) [Award of Excellence Certificate] hosted by Chongqing Build Wave Student Club",
+          competition: "YuKeSong2025: Hack whatever you feel like! Unlimited Free-For-All Hackathon",
+          award: "Award of Excellence Certificate",
+          host: "Chongqing Build Wave Student Club",
+          participants: "111 participants",
+          year: "2025",
+          isKeyHighlight: false
+        },
+        {
+          shortName: "Innovative Minds Honorable Mention",
+          fullName: "Innovative Minds (98 participants) [Honorable Mention] hosted by presentme",
+          competition: "Innovative Minds",
+          award: "Honorable Mention",
+          host: "presentme",
+          participants: "98 participants",
+          year: "2025",
+          isKeyHighlight: false
+        }
+      ],
       technologies: ["Next.js 15", "React 19", "TypeScript", "Supabase", "PostgreSQL", "Redis", "LangChain", "HuggingFace", "Stripe", "OpenRouter", "Vercel"],
       features: [
-        "Dual-embedding semantic search (E5-Small + BGE-M3) for ultra-accurate RAG knowledge retrieval",
-        "Multimodal video understanding pipeline using Whisper transcription and timestamped Q&A",
-        "Personalized learning path generator with Mermaid diagram visualizations",
+        "Dual-embedding semantic search (E5-Small 384d + BGE-M3 1024d) for ultra-accurate RAG knowledge retrieval",
+        "Multimodal video understanding pipeline using Whisper transcription and timestamped Q&A (±30s context)",
+        "Personalized learning path generator with dynamic Mermaid diagram visualizations",
         "Full course commerce with Stripe Checkout & Connect (90/10 split) and Redis caching",
-        "Rich video experience with Bilibili-style danmaku comments and interactive player",
-        "Interactive virtual classrooms with code joining, assignments, whiteboard, and attendance"
+        "PWA & mobile-responsive architecture with Supabase RLS and QStash background jobs"
       ],
       architectureNotes: "Next.js 15 App Router with Supabase RLS, Upstash Redis caching, LangChain vectorstore, QStash background jobs, and PWA/Capacitor mobile wrapper.",
       githubUrl: "https://github.com/baifan1366/Studify",
       liveUrl: "https://studify-platform.vercel.app",
       stats: [
-        { label: "Recognition", value: "CodeNection Winner" },
-        { label: "RAG Pipeline", value: "Dual-Embedding" },
-        { label: "Stack", value: "Next.js 15 / React 19" }
+        { label: "Inventx 2026", value: "Gold Medal" },
+        { label: "CodeNection", value: "Most Impactful" },
+        { label: "YuKeSong 2025", value: "Award of Excellence" },
+        { label: "RAG Pipeline", value: "Dual-Embedding" }
       ],
-      accentColor: "#38bdf8"
+      accentColor: "#eab308"
     },
     {
       id: "teamsync",
@@ -192,58 +257,34 @@ export const portfolioData: PortfolioData = {
         { label: "Database", value: "Supabase PostgreSQL" },
         { label: "Languages", value: "EN / ZH / MY" }
       ],
-      accentColor: "#a855f7"
+      accentColor: "#fbbf24"
     },
     {
       id: "moabi-systems",
       title: "Moabi PLT Enterprise Systems Suite",
       tagline: "Production Food POS, e-Invoice Compliance System, and Project Management Platform.",
-      description: "Contributed to three live enterprise platforms during a 4-month software engineering internship at Moabi PLT, optimizing UI/UX workflows and validation processes.",
-      fullOverview: "During a 4-month engineering internship at Moabi PLT, contributed to the evolution of three core systems: Food POS System (streamlining kitchen and ordering flows), e-Invoice System (implementing Malaysian LHDN e-invoicing compliance and validation), and Project Management System (optimizing cross-department workflows and internal communications).",
+      description: "Enterprise software engineering internship at Moabi PLT, focusing on system QA testing, SIT/UAT validation processes, and UI/UX workflow ergonomics across 3 production platforms.",
+      fullOverview: "During a 4-month software engineering internship at Moabi PLT, contributed directly to three core enterprise systems: Food POS System (optimizing kitchen order routing and POS flows), e-Invoice System (testing Malaysian LHDN e-invoicing compliance, tax validation logic, and XML/JSON data pipelines), and Project Management System (improving cross-team workflow tracking and internal notifications). As this encompasses proprietary enterprise production software, source code and live deployments are protected under company confidentiality (NDA).",
       category: "Web App",
       role: "Software Engineering Intern @ Moabi PLT",
+      status: "Enterprise Internship • Confidential",
+      isConfidential: true,
+      confidentialNotice: "Company Confidential • Proprietary Enterprise Software (Protected under NDA, no public repository or live link)",
       technologies: ["React", "Next.js", "Tailwind CSS", "MySQL", "phpMyAdmin", "Figma", "Stripo", "Git"],
       features: [
-        "Enhanced UI/UX design and workflow ergonomics across Food POS and e-Invoice modules",
-        "System testing, validation processes, and cross-stage feedback reviews for functional accuracy",
-        "Collaborated with frontend developers, testers, and sysadmins for seamless module integration",
-        "Engineered responsive email notifications and UI templates using Stripo",
-        "Authored system documentation bridging technical logic with business stakeholder needs"
+        "Quality Assurance & System Testing: Executed comprehensive functional, integration, and regression testing across Food POS and e-Invoice modules",
+        "Malaysia LHDN e-Invoice Validation: Verified tax field calculations, invoice status schemas, and invoice compliance workflows",
+        "Workflow & UI/UX Ergonomics: Refined operational user interfaces to reduce operator input errors and accelerate order handling speeds",
+        "Automated Communication Templates: Crafted responsive transactional email templates and notification logic using Stripo",
+        "Technical Documentation: Authored detailed test cases, bug reproduction guides, and system feature documentation for cross-functional alignment"
       ],
-      architectureNotes: "Multi-tenant enterprise web architecture; MySQL database with phpMyAdmin; modern responsive frontend interfaces in React and Tailwind CSS.",
-      githubUrl: "https://github.com/WeiXuan-C",
-      liveUrl: "https://github.com/WeiXuan-C",
+      architectureNotes: "Multi-tenant enterprise production architecture; MySQL relational databases managed with phpMyAdmin; React/Tailwind frontend modules; internal REST APIs.",
       stats: [
         { label: "Tenure", value: "2024.07 – 2024.10" },
         { label: "Platforms", value: "3 Core Systems" },
         { label: "Location", value: "Melaka, Malaysia" }
       ],
-      accentColor: "#f59e0b"
-    },
-    {
-      id: "supplychain-ai",
-      title: "SupplyChain AI — Capacity Load Planner",
-      tagline: "AI-driven logistics capacity forecasting and resource optimization engine.",
-      description: "An AI-powered web application deployed on Vercel that models warehouse capacity loads, transit constraints, and resource distribution.",
-      fullOverview: "Developed to demonstrate how generative AI models can optimize industrial supply chain operations. It features interactive capacity modeling, algorithmic forecasting, and a clean modern dashboard interface.",
-      category: "AI & Systems",
-      role: "Lead Developer",
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Gemini API", "Vercel"],
-      features: [
-        "Real-time capacity load calculation and bottleneck risk identification",
-        "AI recommendations for warehouse and transit allocation",
-        "High-density responsive data visualizer with dark mode ergonomics",
-        "Instant serverless deployment on Vercel"
-      ],
-      architectureNotes: "Serverless Next.js architecture with server-side AI reasoning; deployed on Vercel.",
-      githubUrl: "https://github.com/WeiXuan-C/SupplyChainAISystem",
-      liveUrl: "https://capacity-load.vercel.app",
-      stats: [
-        { label: "Status", value: "Live on Vercel" },
-        { label: "Engine", value: "Gemini AI" },
-        { label: "Type", value: "Interactive Prototype" }
-      ],
-      accentColor: "#ec4899"
+      accentColor: "#d97706"
     }
   ],
   experience: [
@@ -295,7 +336,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "mmu-fyp",
       role: "Core Developer (TeamSync FYP)",
-      company: "Multimedia University (Faculty of Information Technology)",
+      company: "Multimedia University (MMU FIST — Faculty of Information Science and Technology)",
       location: "Melaka, Malaysia",
       period: "2025.02 – 2025.07",
       type: "University",
@@ -310,33 +351,37 @@ export const portfolioData: PortfolioData = {
   education: [
     {
       id: "bachelor-se",
-      degree: "Bachelor of Computer Science (Hons.) Software Engineering",
-      institution: "Multimedia University (MMU)",
-      period: "2025.10 – Present",
-      gpa: "In Progress (Current Undergraduate)",
+      degree: "Bachelor of Computer Science (Honours) in Software Engineering",
+      institution: "Multimedia University (MMU FCI — Faculty of Computing and Informatics, Cyberjaya)",
+      period: "2025.10 – Present (Year 3, Trimester 3)",
+      gpa: "CGPA: 3.90 / 4.00 (Year 3 Sem 3)",
       details: [
-        "Location: Cyberjaya Campus, Malaysia",
-        "Specialization: Software Architecture, Distributed Cloud Systems & Applied Artificial Intelligence",
-        "Active Hackathon Participant & Open Source Contributor"
+        "Faculty: Faculty of Computing and Informatics (FCI), Cyberjaya Campus",
+        "Current Standing: 3rd Year, 3rd Semester (Year 3 Sem 3) • CGPA 3.90 / 4.00",
+        "Specialization: Software Architecture, Distributed Cloud Systems & Applied AI",
+        "Multi-Hackathon Winner (Inventx Gold Medal, CodeNection Most Impactful, UNIMAS 8.0)",
+        "Open Source Contributor across Web Apps & Multi-Agent AI Workspaces"
       ],
       coursework: [
-        "Software Engineering Principles",
+        "Software Engineering Principles & Methodologies",
         "Advanced Algorithms & Data Structures",
-        "Cloud Computing Architecture",
+        "Cloud Computing Architecture & Microservices",
         "Artificial Intelligence & Machine Learning",
-        "Database Administration & Scalability"
+        "Database Administration & Scalability",
+        "Software Quality Assurance & Testing"
       ]
     },
     {
       id: "diploma-it",
       degree: "Diploma in Information Technology",
-      institution: "Multimedia University (MMU)",
+      institution: "Multimedia University (MMU FIST — Faculty of Information Science and Technology, Melaka)",
       period: "2023.08 – 2025.08",
       gpa: "CGPA: 3.93 / 4.00 (High Distinction)",
       details: [
-        "Location: Melaka Campus, Malaysia",
+        "Faculty: Faculty of Information Science and Technology (FIST), Melaka Campus",
+        "Academic Standing: CGPA 3.93 / 4.00 (High Distinction across all semesters)",
         "Final Year Project: TeamSync (AI-Powered Project Management System)",
-        "Consistent High Academic Excellence Across All Semesters"
+        "Dean's List Award recipient every semester"
       ],
       coursework: [
         "Object-Oriented Programming (Java / C++)",
@@ -375,7 +420,7 @@ export const portfolioData: PortfolioData = {
       summary: "A driver-first mobile UI designed for rapid hazard identification with high-contrast color coding, intuitive Google Maps overlays, and voice-assisted navigation.",
       figmaUrl: "https://github.com/WeiXuan-C/Pavra",
       tags: ["Flutter", "Mobile UX", "Map UI", "Voice Search", "Dark Mode"],
-      metrics: "UNIMAS 8.0 Champion — Recognized for exceptional usability under driving conditions",
+      metrics: "UNIMAS 8.0 First Runner-Up & Best Testimonial — Praised for real-world driving ergonomics",
       before: {
         title: "Standard Road Hazard Forms",
         points: ["Tedious manual text forms requiring drivers to type details", "Cluttered map pins without severity differentiation", "No voice-assisted hands-free search"]
@@ -393,7 +438,7 @@ export const portfolioData: PortfolioData = {
       summary: "An immersive digital classroom with interactive timestamped video Q&A (±30s context window), floating danmaku player controls, and dynamic Mermaid graph visualizers.",
       figmaUrl: "https://github.com/baifan1366/Studify",
       tags: ["Next.js 15", "Design System", "Danmaku Player", "Mermaid Charts"],
-      metrics: "CodeNection 2025 Winner — Praised for engaging student retention UI",
+      metrics: "Inventx Gold & CodeNection Winner — Praised for engaging student retention UI",
       before: {
         title: "Traditional Video Course Portals",
         points: ["Static video players with disconnected text forums", "Rigid course chapter lists with no visual progression graph", "No context-aware timestamped AI explanations"]
@@ -406,48 +451,154 @@ export const portfolioData: PortfolioData = {
   ],
   certifications: [
     {
-      name: "Diploma in Information Technology",
+      name: "Inventx 2026 Gold Medalist (International Competition)",
+      issuer: "Multimedia University (MMU)",
+      year: "2026",
+      credentialId: "INVENTX-2026-GOLD"
+    },
+    {
+      name: "UNIMAS 8.0 Product 1st Runner-Up & Best Testimonial",
+      issuer: "Universiti Malaysia Sarawak (UNIMAS)",
+      year: "2026",
+      credentialId: "UNIMAS-8.0-DOUBLE-AWARD"
+    },
+    {
+      name: "CodeNection 2025 Most Impactful Project (900+ participants)",
+      issuer: "MMU IT Society",
+      year: "2025",
+      credentialId: "CODENECT-2025-IMPACT"
+    },
+    {
+      name: "YuKeSong 2025 Award of Excellence Certificate",
+      issuer: "Chongqing Build Wave Student Club",
+      year: "2025",
+      credentialId: "YUKESONG-2025-EXCELLENCE"
+    },
+    {
+      name: "Diploma in Information Technology (High Distinction)",
       issuer: "Multimedia University (MMU)",
       year: "2025",
       credentialId: "CGPA-3.93-HIGH-DISTINCTION"
-    },
-    {
-      name: "UNIMAS 8.0 Champion Certification",
-      issuer: "Universiti Malaysia Sarawak (UNIMAS)",
-      year: "2026",
-      credentialId: "UNIMAS-8.0-WINNER"
-    },
-    {
-      name: "CodeNection Hackathon Winner",
-      issuer: "CodeNection 2025",
-      year: "2025",
-      credentialId: "CODENECT-WINNER-2025"
     }
   ],
   awards: [
     {
-      title: "Winner — UNIMAS 8.0 Hackathon",
-      competition: "Universiti Malaysia Sarawak (UNIMAS)",
-      year: "2025 – 2026",
-      description: "Team Leader for Pavra, an AI-powered road safety mobile application featuring Google Gemma 3 4B VLM hazard classification and Google Maps integration."
+      id: "inventx-2026",
+      title: "Inventx 2026 [Gold Medal] hosted by MMU (International Competition) — Studify",
+      shortTitle: "Inventx 2026 Gold Medal",
+      competition: "Inventx 2026 (International Competition)",
+      project: "Studify",
+      host: "Multimedia University (MMU)",
+      award: "Gold Medal",
+      awardLevel: "Gold",
+      badge: "🥇 International Gold Medal",
+      year: "2026",
+      keyHighlight: true,
+      description: "Awarded Gold Medal in prestigious international engineering & innovation competition for Studify, an AI-powered tutoring ecosystem unifying dual-embedding RAG and video transcription."
     },
     {
-      title: "Winner — CodeNection Hackathon",
+      id: "codenection-2025",
+      title: "CodeNection 2025 (900+ participants) [Most Impactful Project] hosted by MMU IT Society — Studify",
+      shortTitle: "CodeNection 2025 Most Impactful Project",
       competition: "CodeNection 2025",
+      project: "Studify",
+      host: "MMU IT Society",
+      participants: "900+ participants",
+      award: "Most Impactful Project",
+      awardLevel: "Impact",
+      badge: "🏆 Most Impactful Award (900+ Participants)",
       year: "2025",
-      description: "Core Developer for Studify, an AI-powered tutoring and learning platform with dual-embedding RAG (E5-Small + BGE-M3) and Whisper video comprehension."
+      keyHighlight: true,
+      description: "Awarded Most Impactful Project among 900+ national participants for building an AI educational ecosystem with hybrid semantic search (E5-Small + BGE-M3) and interactive video Q&A."
     },
     {
-      title: "Academic High Distinction (CGPA: 3.93)",
-      competition: "Multimedia University (Faculty of Information Technology)",
-      year: "2023 – 2025",
-      description: "Achieved CGPA of 3.93 / 4.00 throughout Diploma studies with outstanding academic performance."
+      id: "unimas-8-runner-up",
+      title: "UNIMAS 8.0 Hackathon [Product Category First Runner-Up] hosted by UNIMAS — Pavra",
+      shortTitle: "UNIMAS 8.0 Product 1st Runner-Up",
+      competition: "UNIMAS Hackathon 8.0",
+      project: "Pavra",
+      host: "Universiti Malaysia Sarawak (UNIMAS)",
+      award: "Product Category 1st Runner-Up",
+      awardLevel: "RunnerUp",
+      badge: "🥈 Product 1st Runner-Up",
+      year: "2025 – 2026",
+      keyHighlight: true,
+      description: "Team Leader for Pavra. Won Product Category First Runner-Up for AI edge vision road hazard detection and proximity alert broadcasting powered by Google Gemma 3 4B VLM."
+    },
+    {
+      id: "unimas-8-testimonial",
+      title: "UNIMAS 8.0 Hackathon [Best Testimonial Award] hosted by UNIMAS — Pavra",
+      shortTitle: "UNIMAS 8.0 Best Testimonial Award",
+      competition: "UNIMAS Hackathon 8.0",
+      project: "Pavra",
+      host: "Universiti Malaysia Sarawak (UNIMAS)",
+      award: "Best Testimonial Award",
+      awardLevel: "Excellence",
+      badge: "🌟 Best Testimonial Award",
+      year: "2025 – 2026",
+      keyHighlight: true,
+      description: "Recognized with the Best Testimonial Award by UNIMAS Hackathon evaluation committee for user safety impact, real-world utility, and live driver feedback loops."
+    },
+    {
+      id: "yukesong-2025",
+      title: "YuKeSong2025: Hack whatever you feel like! Unlimited Free-For-All Hackathon (111 participants) [Award of Excellence Certificate] hosted by Chongqing Build Wave Student Club — Studify",
+      shortTitle: "YuKeSong 2025 Award of Excellence",
+      competition: "YuKeSong2025: Unlimited Free-For-All Hackathon",
+      project: "Studify",
+      host: "Chongqing Build Wave Student Club",
+      participants: "111 participants",
+      award: "Award of Excellence Certificate",
+      awardLevel: "Excellence",
+      badge: "📜 Award of Excellence Certificate",
+      year: "2025",
+      description: "Honored with the Award of Excellence certificate for innovative multimodal educational pipelines and resilient transcription architectures."
+    },
+    {
+      id: "innovative-minds-2025",
+      title: "Innovative Minds (98 participants) [Honorable Mention] hosted by presentme — Studify",
+      shortTitle: "Innovative Minds Honorable Mention",
+      competition: "Innovative Minds",
+      project: "Studify",
+      host: "presentme",
+      participants: "98 participants",
+      award: "Honorable Mention",
+      awardLevel: "Honor",
+      badge: "🎖️ Honorable Mention (Top 10)",
+      year: "2025",
+      description: "Recognized with Honorable Mention among 98 participants for personalized AI learning path graphs and responsive student learning workflows."
+    },
+    {
+      id: "codenection-2026",
+      title: "CodeNection 2026 Hackathon Finalist & Multi-Agent Travel Architecture — Tripify",
+      shortTitle: "CodeNection 2026 (Tripify)",
+      competition: "CodeNection 2026",
+      project: "Tripify",
+      host: "MMU IT Society",
+      award: "Hackathon Entry & System Architecture",
+      awardLevel: "Impact",
+      badge: "🚀 LangGraph Multi-Agent Architecture",
+      year: "2026",
+      description: "Architected real-time collaborative travel planning workspace with LangGraph multi-agent coordination (Researcher, Planner, Critic) and Supabase Realtime sync."
+    },
+    {
+      id: "academic-distinction",
+      title: "Academic High Distinction (Diploma CGPA: 3.93) & Degree CGPA: 3.90",
+      shortTitle: "Academic High Distinction (CGPA 3.90 / 3.93)",
+      competition: "Multimedia University (MMU FCI & FIST)",
+      project: "MMU Academic Excellence",
+      host: "Multimedia University (MMU)",
+      award: "High Distinction & Dean's List",
+      awardLevel: "Academic",
+      badge: "🎓 High Distinction (CGPA 3.90 / 3.93)",
+      year: "2023 – Present",
+      keyHighlight: true,
+      description: "Exceptional academic performance: currently in Year 3 Trimester 3 of Bachelor of Computer Science in Software Engineering at MMU FCI Cyberjaya with CGPA 3.90 / 4.00, following a Diploma in IT at MMU FIST Melaka with CGPA 3.93 High Distinction."
     }
   ],
   languages: [
-    { language: "Mandarin Chinese (中文)", proficiency: "Native / Bilingual (母语)" },
-    { language: "English (英语)", proficiency: "Professional Working Proficiency" },
-    { language: "Malay (马来文)", proficiency: "Professional Working / Conversational" }
+    { language: "Mandarin Chinese", proficiency: "Native / Bilingual" },
+    { language: "English", proficiency: "Professional Working Proficiency" },
+    { language: "Malay", proficiency: "Professional Working / Conversational" }
   ],
   interests: [
     "Multimodal Vision-Language Models (Gemma 3 VLM, Whisper)",

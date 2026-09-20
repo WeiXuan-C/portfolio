@@ -99,13 +99,13 @@ export const ParticleBackground: React.FC = () => {
           p1.alpha = p1.baseAlpha;
         }
 
-        // Draw particle
+        // Draw particle (Champagne Gold / Amber)
         ctx.beginPath();
         ctx.arc(p1.x, p1.y, p1.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(52, 211, 153, ${p1.alpha})`;
+        ctx.fillStyle = `rgba(245, 158, 11, ${p1.alpha * 0.9})`;
         ctx.fill();
 
-        // Connect with nearby particles
+        // Connect with nearby particles (Subtle metallic gold constellation lines)
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p1.x - p2.x;
@@ -113,11 +113,11 @@ export const ParticleBackground: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 110) {
-            const lineAlpha = (1 - dist / 110) * 0.12;
+            const lineAlpha = (1 - dist / 110) * 0.14;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(56, 189, 248, ${lineAlpha})`;
+            ctx.strokeStyle = `rgba(212, 175, 55, ${lineAlpha})`;
             ctx.stroke();
           }
         }

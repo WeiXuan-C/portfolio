@@ -24,7 +24,11 @@ import {
   FileText,
   ThumbsUp,
   RefreshCw,
-  Clock
+  Clock,
+  Award,
+  Trophy,
+  Lock,
+  ShieldCheck
 } from 'lucide-react';
 import { ProjectItem } from '../types';
 
@@ -34,7 +38,10 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'simulation' | 'architecture'>('simulation');
+  const [activeTab, setActiveTab] = useState<'overview' | 'simulation' | 'architecture'>(
+    project?.isConfidential ? 'overview' : 'simulation'
+  );
+  const [showFullAwards, setShowFullAwards] = useState(false);
 
   // Tripify interactive state
   const [tripDest, setTripDest] = useState('Tokyo & Kyoto');
@@ -58,52 +65,60 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.94, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-4xl bg-[#0b0f19] border border-slate-800 rounded-3xl shadow-2xl shadow-black overflow-hidden max-h-[90vh] flex flex-col"
+          exit={{ opacity: 0, scale: 0.94, y: 15 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full max-w-4xl bg-[#0a0a0f] border border-amber-500/30 rounded-3xl shadow-2xl shadow-black overflow-hidden max-h-[90vh] flex flex-col"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/80 bg-[#080c14]">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-amber-500/15 bg-[#060609]">
             <div className="flex items-center gap-3">
               <span 
-                className="w-3 h-3 rounded-full" 
-                style={{ backgroundColor: project.accentColor }} 
+                className="w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/50" 
               />
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-100">{project.title}</h3>
-                <span className="text-xs font-mono text-emerald-400">{project.role}</span>
+                <h3 className="text-base sm:text-lg font-bold text-neutral-100">{project.title}</h3>
+                <span className="text-xs font-mono text-amber-400">{project.role}</span>
               </div>
             </div>
 
             <div className="flex items-center gap-2">
+              {project.isConfidential && (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono">
+                  <Lock className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="hidden sm:inline">Company NDA Protected</span>
+                </div>
+              )}
               {project.videoUrl && (
                 <a
                   href={project.videoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/20 text-xs font-medium transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 hover:bg-amber-500/20 text-xs font-medium transition-colors"
                   title="Watch Video Presentation on YouTube"
                 >
-                  <Video className="w-3.5 h-3.5" />
+                  <Video className="w-3.5 h-3.5 text-amber-400" />
                   <span className="hidden sm:inline">Pitch Video</span>
                 </a>
               )}
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors"
-                title="View Source on GitHub"
-              >
-                <Github className="w-4 h-4" />
-              </a>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 rounded-xl bg-[#12121a] border border-amber-500/20 text-neutral-300 hover:text-white hover:border-amber-500/40 transition-colors"
+                  title="View Source on GitHub"
+                >
+                  <Github className="w-4 h-4 text-amber-400" />
+                </a>
+              )}
               <button
                 id="modal-close-btn"
                 onClick={onClose}
-                className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-rose-500/50 hover:bg-rose-500/10 transition-colors"
+                className="p-2 rounded-xl bg-[#12121a] border border-amber-500/20 text-neutral-400 hover:text-white hover:border-amber-500/50 hover:bg-amber-500/10 transition-colors cursor-pointer"
                 aria-label="Close Project Modal"
               >
                 <X className="w-4 h-4" />
@@ -111,51 +126,50 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </div>
           </div>
 
-          {/* Tab Selector */}
-          <div className="flex items-center gap-2 px-6 pt-3 border-b border-slate-800/60 bg-[#090d16]">
-            <button
-              onClick={() => setActiveTab('simulation')}
-              className={`pb-2.5 text-xs font-mono font-medium border-b-2 transition-all ${
-                activeTab === 'simulation'
-                  ? 'border-emerald-400 text-emerald-300'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              Interactive Live Simulation
-            </button>
-            <button
-              onClick={() => setActiveTab('overview')}
-              className={`pb-2.5 text-xs font-mono font-medium border-b-2 transition-all ${
-                activeTab === 'overview'
-                  ? 'border-emerald-400 text-emerald-300'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              System Overview & Features
-            </button>
-            <button
-              onClick={() => setActiveTab('architecture')}
-              className={`pb-2.5 text-xs font-mono font-medium border-b-2 transition-all ${
-                activeTab === 'architecture'
-                  ? 'border-emerald-400 text-emerald-300'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              Technical Architecture & Stack
-            </button>
+          {/* Tab Selector with Smooth Indicator */}
+          <div className="flex items-center gap-2 px-6 pt-3 border-b border-amber-500/15 bg-[#08080d] overflow-x-auto no-scrollbar">
+            {(project.isConfidential ? [
+              { id: 'overview', label: '实习职责与系统概述 (Internship Overview)' },
+              { id: 'simulation', label: 'QA测试与验证流程 (QA Protocol)' },
+              { id: 'architecture', label: '企业环境与技术栈 (Tech Stack)' },
+            ] : [
+              { id: 'simulation', label: 'Interactive Live Simulation' },
+              { id: 'overview', label: 'System Overview & Features' },
+              { id: 'architecture', label: 'Technical Architecture & Stack' },
+            ]).map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={`relative pb-2.5 px-2 text-xs font-mono font-medium whitespace-nowrap transition-colors cursor-pointer ${
+                    isActive ? 'text-amber-300 font-bold' : 'text-neutral-400 hover:text-neutral-200'
+                  }`}
+                >
+                  <span>{tab.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="modal-tab-indicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-300"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
           </div>
 
           {/* Modal Body */}
-          <div className="p-6 overflow-y-auto space-y-6 flex-1 text-slate-300 text-sm">
+          <div className="p-6 overflow-y-auto space-y-6 flex-1 text-neutral-300 text-sm">
             {/* Simulation Tab */}
             {activeTab === 'simulation' && (
               <div className="space-y-4">
-                <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 flex items-center justify-between">
+                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-300 flex items-center justify-between">
                   <span className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4" />
+                    <Sparkles className="w-4 h-4 text-amber-400" />
                     Interactive prototype playground previewing core engineering logic
                   </span>
-                  <span className="font-mono text-[10px] bg-emerald-500/20 px-2 py-0.5 rounded">Live Interactive Demo</span>
+                  <span className="font-mono text-[10px] bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30">Live Interactive Demo</span>
                 </div>
 
                 {/* Case 1: Tripify Multi-Agent Travel Planning Workspace */}
@@ -521,35 +535,142 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {activeTab === 'overview' && (
               <div className="space-y-5">
                 <div>
-                  <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">
+                  <h4 className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-1">
                     Problem Statement & Engineering Solution
                   </h4>
-                  <p className="text-sm text-slate-300 leading-relaxed">
+                  <p className="text-sm text-neutral-300 leading-relaxed font-sans">
                     {project.fullOverview}
                   </p>
                 </div>
 
+                {/* Optional Project Awards (Support Key Highlights vs Full Official Citations) */}
+                {project.awardsList && project.awardsList.length > 0 && (
+                  <div className="p-4 sm:p-5 rounded-2xl bg-[#0d0d14] border border-amber-500/25 space-y-3.5 shadow-lg">
+                    <div className="flex items-center justify-between flex-wrap gap-2 pb-2 border-b border-amber-500/15">
+                      <div className="flex items-center gap-2">
+                        <Trophy className="w-4 h-4 text-amber-400" />
+                        <h4 className="text-xs font-mono text-amber-300 uppercase tracking-wider font-bold">
+                          Competition Honors & Awards ({project.awardsList.length})
+                        </h4>
+                      </div>
+
+                      {/* Mode toggle: Key Highlights vs Full Official Citations */}
+                      <div className="flex items-center gap-1 p-0.5 rounded-lg bg-[#07070a] border border-amber-500/20 text-[11px] font-mono">
+                        <button
+                          id="modal-awards-concise-btn"
+                          onClick={() => setShowFullAwards(false)}
+                          className={`px-2.5 py-1 rounded-md transition-all cursor-pointer ${
+                            !showFullAwards
+                              ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 shadow-sm'
+                              : 'text-neutral-400 hover:text-neutral-200'
+                          }`}
+                        >
+                          Key Highlights (重点版)
+                        </button>
+                        <button
+                          id="modal-awards-full-btn"
+                          onClick={() => setShowFullAwards(true)}
+                          className={`px-2.5 py-1 rounded-md transition-all cursor-pointer ${
+                            showFullAwards
+                              ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 shadow-sm'
+                              : 'text-neutral-400 hover:text-neutral-200'
+                          }`}
+                        >
+                          Full Official (完整官方信息)
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* View 1: Key Highlights (Clean, compact, punchy) */}
+                    {!showFullAwards ? (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {project.awardsList.map((aw) => (
+                          <div
+                            key={aw.shortName}
+                            className={`p-3 rounded-xl border flex items-start gap-2.5 transition-all ${
+                              aw.isKeyHighlight
+                                ? 'bg-gradient-to-r from-amber-950/30 to-[#12121b] border-amber-500/35 text-neutral-200 shadow-sm'
+                                : 'bg-[#101018] border-amber-500/15 text-neutral-300'
+                            }`}
+                          >
+                            <Award className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                            <div className="space-y-0.5 min-w-0">
+                              <div className="text-xs font-bold text-neutral-100 flex items-center gap-2">
+                                <span>{aw.shortName}</span>
+                                <span className="text-[10px] font-mono text-amber-400/80">({aw.year})</span>
+                              </div>
+                              <div className="text-[11px] text-neutral-400 truncate">
+                                {aw.competition}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      /* View 2: Full Official Citations (Complete host, participants, official title) */
+                      <div className="space-y-2.5">
+                        {project.awardsList.map((aw, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3.5 rounded-xl bg-[#09090e] border border-amber-500/25 space-y-1.5"
+                          >
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="flex items-center gap-2">
+                                <span className="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[11px] font-mono font-bold flex items-center justify-center flex-shrink-0">
+                                  {idx + 1}
+                                </span>
+                                <span className="text-xs font-bold text-neutral-100 font-sans leading-snug">
+                                  {aw.fullName}
+                                </span>
+                              </div>
+                              <span className="text-[10px] font-mono text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/25 flex-shrink-0">
+                                {aw.year}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1.5 text-[11px] font-mono text-neutral-400 border-t border-amber-500/10">
+                              <div>
+                                <span className="text-neutral-500">Award: </span>
+                                <span className="text-amber-300 font-medium">{aw.award}</span>
+                              </div>
+                              <div>
+                                <span className="text-neutral-500">Hosted by: </span>
+                                <span className="text-neutral-300">{aw.host}</span>
+                              </div>
+                              {aw.participants && (
+                                <div>
+                                  <span className="text-neutral-500">Participation: </span>
+                                  <span className="text-yellow-400">{aw.participants}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 <div>
-                  <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
-                    Key Engineered Capabilities
+                  <h4 className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-2">
+                    Key Engineered Capabilities & Highlights
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {project.features.map((feature, idx) => (
-                      <div key={idx} className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-xs text-slate-300">{feature}</span>
+                      <div key={idx} className="p-3 rounded-xl bg-[#0f0f18] border border-amber-500/15 flex items-start gap-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-xs text-neutral-300">{feature}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
+                  <h4 className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-2">
                     Technologies in Stack
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((t) => (
-                      <span key={t} className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">
+                      <span key={t} className="px-3 py-1 rounded-lg bg-[#12121b] border border-amber-500/20 text-xs font-mono text-neutral-200">
                         {t}
                       </span>
                     ))}
@@ -561,21 +682,21 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {/* Architecture Tab */}
             {activeTab === 'architecture' && (
               <div className="space-y-4">
-                <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                <div className="p-4 rounded-2xl bg-[#0f0f18] border border-amber-500/20 space-y-3">
+                  <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
                     <Cpu className="w-4 h-4" />
                     <span>System Architecture & Engineering Decisions</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed font-mono">
+                  <p className="text-xs text-neutral-300 leading-relaxed font-mono">
                     {project.architectureNotes}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {project.stats?.map((stat, idx) => (
-                    <div key={idx} className="p-4 rounded-xl bg-[#090d16] border border-slate-800 text-center">
-                      <div className="text-xs font-mono text-slate-400">{stat.label}</div>
-                      <div className="text-lg font-bold font-display text-slate-100 mt-1">{stat.value}</div>
+                    <div key={idx} className="p-4 rounded-xl bg-[#08080d] border border-amber-500/15 text-center">
+                      <div className="text-xs font-mono text-neutral-400">{stat.label}</div>
+                      <div className="text-lg font-bold font-display text-amber-300 mt-1">{stat.value}</div>
                     </div>
                   ))}
                 </div>
@@ -584,9 +705,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           {/* Footer Actions */}
-          <div className="p-4 px-6 border-t border-slate-800/80 bg-[#080c14] flex flex-wrap items-center justify-between gap-3">
-            <div className="text-xs font-mono text-slate-400">
-              Role: <span className="text-emerald-400">{project.role}</span>
+          <div className="p-4 px-6 border-t border-amber-500/15 bg-[#060609] flex flex-wrap items-center justify-between gap-3">
+            <div className="text-xs font-mono text-neutral-400">
+              Role: <span className="text-amber-400">{project.role}</span>
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
@@ -595,30 +716,40 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   href={project.videoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-rose-500/10 border border-rose-500/30 hover:bg-rose-500/20 text-rose-300 text-xs font-medium transition-colors"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 text-amber-300 text-xs font-medium transition-colors"
                 >
                   <Video className="w-3.5 h-3.5" />
                   <span>Pitch Video</span>
                 </a>
               )}
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 text-xs font-medium transition-colors"
-              >
-                <Github className="w-3.5 h-3.5" />
-                <span>GitHub</span>
-              </a>
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition-colors shadow-md shadow-emerald-500/20"
-              >
-                <span>Live App / Deployment</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#12121b] border border-amber-500/20 hover:border-amber-500/40 text-neutral-300 text-xs font-medium transition-colors"
+                >
+                  <Github className="w-3.5 h-3.5 text-amber-400" />
+                  <span>GitHub</span>
+                </a>
+              )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:brightness-110 text-neutral-950 text-xs font-bold transition-all shadow-md shadow-amber-500/20"
+                >
+                  <span>Live App / Deployment</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+              {project.isConfidential && (
+                <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono">
+                  <Lock className="w-3.5 h-3.5 text-amber-400" />
+                  <span>公司机密受保密协议保护 (No Public Links / NDA Protected)</span>
+                </div>
+              )}
             </div>
           </div>
         </motion.div>
